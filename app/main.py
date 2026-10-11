@@ -82,6 +82,17 @@ async def get_models():
         "providers": list(PROVIDER_ENDPOINTS.keys())
     }
 
+@app.get("/api/version")
+async def get_version():
+    """Return deployment version, commit, and CleanAPIs status"""
+    from app.config import CLEANAPIS_BASE_URL, CLEANAPIS_API_KEY
+    return {
+        "status": "online",
+        "commit": "d32853a",
+        "cleanapis_url": CLEANAPIS_BASE_URL,
+        "cleanapis_key_prefix": CLEANAPIS_API_KEY[:8] if CLEANAPIS_API_KEY else "none"
+    }
+
 @app.post("/api/chat")
 async def chat_stream(request: ChatRequest):
     """

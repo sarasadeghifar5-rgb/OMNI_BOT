@@ -5,3 +5,4 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: python start_render.py
     plan: free
+    autoDeploy: true
