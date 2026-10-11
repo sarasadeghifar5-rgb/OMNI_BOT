@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 # Telegram Bot Token
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
+BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or "8389701671:AAFvuEdwWPP01efDB6Zn3N5ZFMWTf-__xnM").strip()
 
 # Admin IDs
 MAIN_ADMIN_ID = int(os.getenv("TELEGRAM_MAIN_ADMIN_ID", "495404413").strip() or "495404413")
@@ -29,7 +29,7 @@ RATE_LIMIT_SECONDS = float(os.getenv("BOT_RATE_LIMIT", "0.8"))        # Min seco
 MAX_HISTORY_TURNS = int(os.getenv("BOT_MAX_HISTORY_TURNS", "12"))      # Sliding window of chat messages per user
 
 # Default settings
-DEFAULT_MODEL = "Atria-Dawn-Preview"
+DEFAULT_MODEL = "gemini-3.7-flash"
 DEFAULT_IMAGE_MODEL = None
 DEFAULT_TTS_VOICE = "kore"
 CUSTOM_EMOJI_NEW_CHAT = os.getenv("CUSTOM_EMOJI_NEW_CHAT", "5886422218707050358")

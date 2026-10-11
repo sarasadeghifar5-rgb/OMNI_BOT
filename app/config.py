@@ -255,7 +255,7 @@ AVAILABLE_MODELS: List[Dict[str, Any]] = [
     {
         "id": "gemini",
         "name": "Google Gemini (واحد و پرسرعت)",
-        "provider": "gemini",
+        "provider": "codecraft",
         "category": "Multimodal",
         "description": "مدل پرچمدار، سریع و چندرسانه‌ای گوگل با پشتیبانی از چت پیشرفته، کدنویسی، پاسخ سریع و تحلیل تصاویر",
         "supports_vision": True,
@@ -741,20 +741,51 @@ CLEANAPIS_BASE_URL = _raw_ca_url
 CODECRAFT_BASE_URL = _raw_ca_url
 
 _raw_ca_key = (os.getenv("CLEANAPIS_API_KEY") or os.getenv("CODECRAFT_API_KEY") or "").strip()
-if not _raw_ca_key.startswith("cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"):
+if not _raw_ca_key.startswith("cc_"):
     _raw_ca_key = "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
 CLEANAPIS_API_KEY = _raw_ca_key
 CLEANAPIS_API_KEYS = _raw_ca_key
 CODECRAFT_API_KEY = _raw_ca_key
 CODECRAFT_API_KEYS = _raw_ca_key
 
-AGNES_API_KEY = os.getenv("AGNES_API_KEY", "")
-AGNES_API_KEYS = os.getenv("AGNES_API_KEYS", "")
+FALLBACK_AGNES_KEY = "sk-POKKeOehQiORyp0JFTdOLlfXx0MVVEEnsmhKx1D7Vu15KetF"
+FALLBACK_AGNES_KEYS_STR = (
+    "sk-POKKeOehQiORyp0JFTdOLlfXx0MVVEEnsmhKx1D7Vu15KetF,"
+    "sk-AK67KuWZA5cIcGFnXxmHeA6FSHGzeCsx7xeBYyauGKVRDWpR,"
+    "sk-EK5tylt4p2SAvAjSDZhtJ3GGLbv0Wih5eFan4eW7xI2Vf3hT,"
+    "sk-FV19shXSol063ab7L0fPTjHkUAySLOIBvc0TRgReOfnJoXnx,"
+    "sk-fZBTBlusyssc7jNBCuJYpzYPT4aSYyVA7W8T4jdUt63EH4dQ,"
+    "sk-5JhfKUnKCJdJjl49ZpqL7O00jfsuFpHwjodB7E51IY2YKV2C,"
+    "sk-DNj3iX19Q8Phlfe7b1qmtilZCeuSOYeuCcDeakl0Cs5n0GAj,"
+    "sk-3faD9AXBEeKvbaYHBV7QrOcjUzyQNDTFR3tcOPEyd9314UCN,"
+    "sk-B8sQq7D8TCnlnpV5EFWT3jNXBjYss4WkkdFqYze2wO1ube02,"
+    "sk-t2jbCiz66KodVmiyI4sc702KnJUK9tVZM1qPAaCKuFpphfHA"
+)
+AGNES_API_KEY = os.getenv("AGNES_API_KEY") or FALLBACK_AGNES_KEY
+AGNES_API_KEYS = os.getenv("AGNES_API_KEYS") or FALLBACK_AGNES_KEYS_STR
 AGNES_BASE_URL = os.getenv("AGNES_BASE_URL", "https://apihub.agnes-ai.com/v1")
 
-ATRIA_API_KEY = os.getenv("ATRIA_API_KEY", "")
-ATRIA_API_KEYS = os.getenv("ATRIA_API_KEYS", "")
+FALLBACK_ATRIA_KEY = "atr_RvOHljmvfa8Aje1u2w25Fw-o2ce9_ZSM"
+FALLBACK_ATRIA_KEYS_STR = (
+    "atr_RvOHljmvfa8Aje1u2w25Fw-o2ce9_ZSM,"
+    "atr_gVLC_j0MGIyRvglhDH2eQB-Ktjcr68Br,"
+    "atr_MhvNXDPfCff8bsnp9ZWoqc7PCMTCZ1X3,"
+    "atr_V9ez4j1_3uiJ5ThweFQjG-wb70J0YiOZ,"
+    "atr_KGfIhC-7e8OdX4gjnm8IquFNVJo5eWeu,"
+    "atr_L7lEpH6fRgVt096wWbgQhg0mV9a1K9hx"
+)
+ATRIA_API_KEY = os.getenv("ATRIA_API_KEY") or FALLBACK_ATRIA_KEY
+ATRIA_API_KEYS = os.getenv("ATRIA_API_KEYS") or FALLBACK_ATRIA_KEYS_STR
 ATRIA_BASE_URL = os.getenv("ATRIA_BASE_URL", "https://api.atria-asi.ai/v1")
+
+FALLBACK_PUTER_TOKEN = (
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYyIn0."
+    "eyJ0IjoidCIsInYiOiIyIiwidG9rZW5fdWlkIjoiMDI3OGMyNDItN2VhMi00NjQ1LTg3MGQtZjIwNmM4OTZiMDA3Iiwi"
+    "dXUiOiJObHlHejV3eVNvcXl2eGZIajJaSElBPT0iLCJzdSI6IncrV2pTQ1c5UXMyMUZabktKS3FYZkE9PSIsImFpIjoi"
+    "Tmx5R3o1d3lTb3F5dnhmSGoyWkhJQT09IiwiZnVsbF9hY2Nlc3MiOnRydWUsImlhdCI6MTc5MDA5NzEwNn0."
+    "N_ne3_qUVEm1-XGUxjGFAUtTJhY_yrVjVr7ShvU3X4I"
+)
+PUTER_AUTH_TOKEN = os.getenv("PUTER_AUTH_TOKEN") or os.getenv("PUTER_API_KEY") or FALLBACK_PUTER_TOKEN
 
 PROVIDER_ENDPOINTS = {
     "openai": "https://api.openai.com/v1",

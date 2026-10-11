@@ -26,23 +26,24 @@ class PuterImageService:
     PUTER_API_URL = "https://api.puter.com/drivers/call"
 
     MODEL_MAPPINGS = {
-        "nano-banana": "google/nano-banana",
-        "nano-banana-1": "google/nano-banana",
-        "nano-banana-2": "google/nano-banana-2",
-        "nano-banana-pro": "google/nano-banana-pro",
-        "google/nano-banana": "google/nano-banana",
-        "google/nano-banana-2": "google/nano-banana-2",
-        "google/nano-banana-pro": "google/nano-banana-pro",
-        "sdxl": "workers-ai:bytedance/stable-diffusion-xl-lightning",
-        "sdxl-lightning": "workers-ai:bytedance/stable-diffusion-xl-lightning",
-        "free-sdxl": "workers-ai:bytedance/stable-diffusion-xl-lightning",
+        "nano-banana": "gemini-3.1-flash-image",
+        "nano-banana-1": "gemini-3.1-flash-image",
+        "nano-banana-2": "gemini-3.1-flash-image",
+        "nano-banana-pro": "gemini-3-pro-image",
+        "google/nano-banana": "gemini-3.1-flash-image",
+        "google/nano-banana-2": "gemini-3.1-flash-image",
+        "google/nano-banana-pro": "gemini-3-pro-image",
+        "sdxl": "@cf/bytedance/stable-diffusion-xl-lightning",
+        "sdxl-lightning": "@cf/bytedance/stable-diffusion-xl-lightning",
+        "free-sdxl": "@cf/bytedance/stable-diffusion-xl-lightning",
+        "flux": "@cf/black-forest-labs/flux-1-schnell",
     }
 
     MODEL_LABELS = {
-        "google/nano-banana": "Google Nano Banana (سریع و خلاقانه)",
-        "google/nano-banana-2": "Google Nano Banana 2 (Gemini 3.1 Flash Image)",
-        "google/nano-banana-pro": "Google Nano Banana Pro (Gemini 3 Pro Image)",
-        "workers-ai:bytedance/stable-diffusion-xl-lightning": "SDXL Lightning (رایگان Puter)",
+        "gemini-3.1-flash-image": "Google Nano Banana (Gemini 3.1 Flash Image)",
+        "gemini-3-pro-image": "Google Nano Banana Pro (Gemini 3 Pro Image)",
+        "@cf/bytedance/stable-diffusion-xl-lightning": "SDXL Lightning (رایگان Puter)",
+        "@cf/black-forest-labs/flux-1-schnell": "Flux 1 Schnell (Puter)",
     }
 
     @classmethod
@@ -188,10 +189,10 @@ class PuterImageService:
         }
 
         # Model specific options
-        if "nano-banana" in target_model:
+        if any(k in target_model for k in ["gemini", "banana", "nano"]):
             args["aspect_ratio"] = selected_ratio
             args["output_format"] = output_format
-            if "nano-banana-2" in target_model or "nano-banana-pro" in target_model:
+            if "pro" in target_model or "2" in target_model:
                 args["resolution"] = resolution if resolution in ["1K", "2K", "4K"] else "1K"
 
         payload = {
@@ -235,11 +236,13 @@ class PuterImageService:
                         if image_url:
                             model_label = cls.MODEL_LABELS.get(target_model, target_model)
                             return {
+                                "success": True,
                                 "status": "success",
                                 "engine": "puter_nano_banana",
                                 "model_id": target_model,
                                 "model_name": model_label,
                                 "image_url": image_url,
+                                "url": image_url,
                                 "prompt": prompt,
                                 "english_prompt": english_prompt,
                                 "aspect_ratio": selected_ratio,
@@ -250,7 +253,7 @@ class PuterImageService:
             print(f"[PuterImageService] Primary Nano Banana generation error: {e}")
 
         # Fallback 1: Try 100% free Puter SDXL Lightning
-        if target_model != "workers-ai:bytedance/stable-diffusion-xl-lightning":
+        if target_model != "@cf/bytedance/stable-diffusion-xl-lightning":
             try:
                 fallback_payload = {
                     "interface": "puter-image-generation",
@@ -259,7 +262,7 @@ class PuterImageService:
                     "method": "generate",
                     "args": {
                         "prompt": english_prompt,
-                        "model": "workers-ai:bytedance/stable-diffusion-xl-lightning"
+                        "model": "@cf/bytedance/stable-diffusion-xl-lightning"
                     },
                     "auth_token": token
                 }
@@ -271,11 +274,13 @@ class PuterImageService:
                             local_url = cls._save_base64_image(data["result"], prefix="banana_sdxl")
                             if local_url:
                                 return {
+                                    "success": True,
                                     "status": "success",
                                     "engine": "puter_sdxl",
                                     "model_id": "sdxl-lightning",
                                     "model_name": "SDXL Lightning (رایگان Puter)",
                                     "image_url": local_url,
+                                    "url": local_url,
                                     "prompt": prompt,
                                     "english_prompt": english_prompt,
                                     "aspect_ratio": selected_ratio,
@@ -305,11 +310,13 @@ class PuterImageService:
                         local_url = cls._save_base64_image(data["result"], prefix="banana_sdxl_base")
                         if local_url:
                             return {
+                                "success": True,
                                 "status": "success",
                                 "engine": "puter_sdxl_base",
                                 "model_id": "sdxl-base",
                                 "model_name": "SDXL Base (رایگان Puter)",
                                 "image_url": local_url,
+                                "url": local_url,
                                 "prompt": prompt,
                                 "english_prompt": english_prompt,
                                 "aspect_ratio": selected_ratio,
@@ -329,11 +336,13 @@ class PuterImageService:
                     local_url = cls._save_image_bytes(p_resp.content, prefix="banana_flux", ext="jpg")
                     if local_url:
                         return {
+                            "success": True,
                             "status": "success",
                             "engine": "flux",
                             "model_id": "flux-free",
                             "model_name": "FLUX.1 Studio (پشتیبان رایگان)",
                             "image_url": local_url,
+                            "url": local_url,
                             "prompt": prompt,
                             "english_prompt": english_prompt,
                             "aspect_ratio": selected_ratio,
@@ -343,10 +352,12 @@ class PuterImageService:
             print(f"[PuterImageService] Pollinations fallback error: {e3}")
 
         return {
+            "success": False,
             "status": "error",
             "engine": "puter",
             "model_name": "Nano Banana",
             "image_url": "",
+            "url": "",
             "prompt": prompt,
             "error_message": "خطا در برقراری ارتباط با درگاه تولید تصویر Puter. لطفاً دوباره تلاش نمایید."
         }

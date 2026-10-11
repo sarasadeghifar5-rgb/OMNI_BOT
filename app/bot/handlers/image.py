@@ -695,7 +695,7 @@ async def execute_text_generation(
                 aspect_ratio=ratio,
                 resolution=size if size in ("1K", "2K", "4K") else "1K"
             )
-            if puter_res.get("success") and (puter_res.get("url") or puter_res.get("image_url")):
+            if (puter_res.get("success") or puter_res.get("status") == "success") and (puter_res.get("url") or puter_res.get("image_url")):
                 result = {
                     "success": True,
                     "url": puter_res.get("url") or puter_res.get("image_url")

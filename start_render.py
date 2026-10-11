@@ -32,13 +32,11 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
     host = "0.0.0.0"
 
-    telegram_token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    telegram_token = os.environ.get("TELEGRAM_BOT_TOKEN") or "8389701671:AAFvuEdwWPP01efDB6Zn3N5ZFMWTf-__xnM"
     if telegram_token:
         print("🚀 Starting OmniLLM Telegram Bot in background thread...", flush=True)
         bot_thread = threading.Thread(target=run_bot_background, daemon=True)
         bot_thread.start()
-    else:
-        print("⚠️ Warning: TELEGRAM_BOT_TOKEN not found in environment variables!", flush=True)
 
     print(f"🌐 Starting Web Server on port {port} (Render Keep-Alive Ready)...", flush=True)
     uvicorn.run("app.main:app", host=host, port=port, log_level="info")

@@ -71,10 +71,31 @@ class LLMGateway:
                 return raw_ca
             return "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
 
+        if provider == "atria":
+            k = (os.getenv("ATRIA_API_KEY") or os.getenv("ATRIA_API_KEYS") or "").strip()
+            if k:
+                return k.split(",")[0].strip()
+            return "atr_RvOHljmvfa8Aje1u2w25Fw-o2ce9_ZSM"
+
+        if provider == "agnes":
+            k = (os.getenv("AGNES_API_KEY") or os.getenv("AGNES_API_KEYS") or "").strip()
+            if k:
+                return k.split(",")[0].strip()
+            return "sk-POKKeOehQiORyp0JFTdOLlfXx0MVVEEnsmhKx1D7Vu15KetF"
+
+        if provider == "puter":
+            return (
+                os.getenv("PUTER_AUTH_TOKEN")
+                or os.getenv("PUTER_API_KEY")
+                or "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYyIn0."
+                   "eyJ0IjoidCIsInYiOiIyIiwidG9rZW5fdWlkIjoiMDI3OGMyNDItN2VhMi00NjQ1LTg3MGQtZjIwNmM4OTZiMDA3Iiwi"
+                   "dXUiOiJObHlHejV3eVNvcXl2eGZIajJaSElBPT0iLCJzdSI6IncrV2pTQ1c5UXMyMUZabktKS3FYZkE9PSIsImFpIjoi"
+                   "Tmx5R3o1d3lTb3F5dnhmSGoyWkhJQT09IiwiZnVsbF9hY2Nlc3MiOnRydWUsImlhdCI6MTc5MDA5NzEwNn0."
+                   "N_ne3_qUVEm1-XGUxjGFAUtTJhY_yrVjVr7ShvU3X4I"
+            )
+
         # 2. Environment variables fallback
         env_map = {
-            "codecraft": ["CLEANAPIS_API_KEYS", "CLEANAPIS_API_KEY", "CODECRAFT_API_KEYS", "CODECRAFT_API_KEY", "CODECRAFT_KEY"],
-            "cleanapis": ["CLEANAPIS_API_KEYS", "CLEANAPIS_API_KEY", "CODECRAFT_API_KEYS", "CODECRAFT_API_KEY", "CODECRAFT_KEY"],
             "openai": "OPENAI_API_KEY",
             "deepseek": "DEEPSEEK_API_KEY",
             "grok": ["GROK_API_KEY", "XAI_API_KEY"],
@@ -83,9 +104,7 @@ class LLMGateway:
             "claude": ["ANTHROPIC_API_KEY", "CLAUDE_API_KEY"],
             "openrouter": "OPENROUTER_API_KEY",
             "pollinations": ["POLLINATIONS_API_KEY", "POLLINATIONS_KEY"],
-            "atria": ["ATRIA_API_KEYS", "ATRIA_API_KEY", "ATRIA_KEY"],
             "tavily": "TAVILY_API_KEY",
-            "agnes": ["AGNES_API_KEYS", "AGNES_API_KEY"],
         }
 
         keys = env_map.get(provider)
@@ -93,7 +112,6 @@ class LLMGateway:
             for k in keys:
                 val = os.getenv(k)
                 if val and val.strip():
-                    # If multiple keys separated by comma, take the first valid one
                     first_k = val.split(",")[0].strip()
                     if first_k:
                         return first_k
@@ -103,9 +121,6 @@ class LLMGateway:
                 first_k = val.split(",")[0].strip()
                 if first_k:
                     return first_k
-
-        if provider in ("codecraft", "cleanapis"):
-            return "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
 
         return None
 
@@ -284,43 +299,13 @@ class LLMGateway:
     @staticmethod
     def generate_offline_response(user_text: str, model_id: str) -> str:
         """
-        Guaranteed intelligent fail-safe response when all external network endpoints are unreachable.
-        Ensures the service NEVER displays an unhandled error and always provides a helpful,
-        articulate response in fluent Persian.
+        Fail-safe connection notification when all live AI endpoints are unreachable.
         """
         clean = (user_text or "").strip()
-        lower = clean.lower()
         model_label = model_id.replace("-", " ").title()
-
-        # Greetings
-        if any(w in lower for w in ["سلام", "درود", "خوبی", "صبح بخیر", "عصر بخیر", "hi", "hello", "های", "hey", "هلو", "چطوری", "سلامت باشی"]):
-            return (
-                f"سلام و درود! من **{model_label}** هستم و در خدمت شما قرار دارم. 😊\n\n"
-                "سرویس فعال و آماده پاسخگویی به پرسش‌ها، تحلیل متون، برنامه‌نویسی و گفتگو با شماست. "
-                "چطور می‌توانم کمکتان کنم؟"
-            )
-
-        # Identity questions
-        if any(w in lower for w in ["کی هستی", "اسمت چیه", "خودت رو معرفی کن", "who are you"]):
-            return (
-                f"من **{model_label}**، مدل هوش مصنوعی پیشرفته شما هستم. "
-                "آماده‌ام به زبان فارسی سلیس و روان به سوالات شما پاسخ داده و در کدنویسی، تحلیل و استدلال کمکتان کنم."
-            )
-
-        # Math / calculation queries
-        if any(op in clean for op in ["+", "-", "*", "/", "="]) and any(c.isdigit() for c in clean):
-            return (
-                f"درخواست محاسباتی شما دریافت شد:\n\n"
-                f"$$\\text{{{clean}}}$$\n\n"
-                "پاسخ آماده است. در صورت نیاز به مراحل تشریحی یا محاسبات عمیق‌تر، جزئیات بیشتری بفرمایید تا قدم‌به‌قدم تحلیل شود."
-            )
-
-        # General query
         return (
-            f"سلام! پیام شما دریافت شد:\n\n"
-            f"> *«{clean[:120]}»*\n\n"
-            "متأسفانه در این لحظه ارتباط با سرورهای پردازش ابری این مدل با تأخیر موقت مواجه شد. "
-            "لطفاً چند لحظه دیگر پیام خود را مجدداً ارسال فرمایید یا از بخش «🤖 انتخاب مدل»، مدل دیگری مانند **Gemini 3.7 Flash** را انتخاب نمایید تا پاسخ فوری دریافت کنید."
+            f"⚠️ **ارتباط با سرورهای پردازش ابری هوش مصنوعی ({model_label}) موقتاً با تأخیر مواجه شد.**\n\n"
+            "لطفاً چند لحظه بعد مجدداً پیام خود را ارسال فرمایید تا پاسخ کامل پردازش و ارسال شود."
         )
 
     async def stream_chat(
@@ -336,6 +321,41 @@ class LLMGateway:
         model_info = self.get_model_info(model_id) or {}
         provider_name = model_info.get("provider", "openai")
         api_key = self.resolve_api_key(provider_name, user_keys)
+
+        # Smart routing: If provider has no API key or for legacy aliases,
+        # seamlessly route to matching flagship models on CleanAPIs / Atria / Agnes.
+        upstream_model = model_id
+        if model_id == "gemini":
+            provider_name = "codecraft"
+            upstream_model = "gemini-3.7-flash"
+            api_key = self.resolve_api_key("codecraft", user_keys)
+        elif not api_key:
+            mid = model_id.lower()
+            if "deepseek" in mid or "r1" in mid:
+                provider_name = "codecraft"
+                upstream_model = "deepseek-v4-pro-max" if ("reasoner" in mid or "r1" in mid) else "deepseek-v4-flash-0731"
+            elif "claude" in mid or "sonnet" in mid or "opus" in mid:
+                provider_name = "codecraft"
+                upstream_model = "claude-sonnet-5"
+            elif "gpt" in mid or "o1" in mid:
+                provider_name = "codecraft"
+                upstream_model = "gpt-5.6-sol" if "o1" in mid else "gpt-5.5"
+            elif "grok" in mid:
+                provider_name = "codecraft"
+                upstream_model = "grok-4.6"
+            elif "glm" in mid:
+                provider_name = "codecraft"
+                upstream_model = "glm-5.3"
+            elif "atria" in mid or "dawn" in mid:
+                provider_name = "atria"
+                upstream_model = "Atria-Dawn-Preview"
+            elif "agnes" in mid:
+                provider_name = "agnes"
+                upstream_model = "agnes-2.5-flash"
+            else:
+                provider_name = "codecraft"
+                upstream_model = "gemini-3.7-flash"
+            api_key = self.resolve_api_key(provider_name, user_keys)
 
         # Prepare messages
         chat_messages = copy.deepcopy(messages)
@@ -509,7 +529,7 @@ class LLMGateway:
             provider_instance = self.get_provider_instance(provider_name, api_key)
             async for chunk in provider_instance.stream_chat(
                 messages=chat_messages,
-                model=model_id,
+                model=upstream_model,
                 temperature=temperature,
                 api_key=api_key,
                 web_search=enable_web_search
@@ -520,18 +540,19 @@ class LLMGateway:
                     continue
                 yield chunk
         except Exception as e:
-            print(f"[Gateway] Primary tier {provider_name} exception: {e}")
+            print(f"[Gateway] Primary tier {provider_name} ({upstream_model}) exception: {e}")
 
         if has_streamed_content:
             return
 
-        # Tier 2: CleanAPIs High-Reliability Fallback (Guaranteed Online Flagship Models)
+        # Tier 2: CleanAPIs Flagship Fallback (Gemini 3.7 Flash / GPT-5.5)
+        cleanapis_fb_model = "gpt-5.5" if upstream_model == "gemini-3.7-flash" else "gemini-3.7-flash"
         try:
             from app.providers.codecraft_provider import CodeCraftProvider
             cleanapis_provider = CodeCraftProvider(default_api_key="cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB")
             async for chunk in cleanapis_provider.stream_chat(
                 messages=chat_messages,
-                model="gemini-3.7-flash",
+                model=cleanapis_fb_model,
                 temperature=temperature,
                 api_key="cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
             ):
@@ -546,84 +567,68 @@ class LLMGateway:
         if has_streamed_content:
             return
 
-        # Tier 2.5: Gemini Resilient Provider
-        if provider_name != "gemini":
-            try:
-                yield {
-                    "type": "status",
-                    "message": "در حال هدایت خودکار به سرور پرسرعت پشتیبان..."
-                }
-                gemini_provider = GeminiProvider()
-                async for chunk in gemini_provider.stream_chat(
-                    messages=chat_messages,
-                    model="gemini",
-                    temperature=temperature
-                ):
-                    if chunk.get("type") in ("content", "thinking"):
-                        has_streamed_content = True
-                    if chunk.get("type") == "error":
-                        continue
-                    yield chunk
-            except Exception as e:
-                print(f"[Gateway] Gemini fallback exception: {e}")
-
-        if has_streamed_content:
-            return
-
-        # Tier 2.5: Agnes Multimodal & Reasoning Fallback
-        if provider_name != "agnes":
-            try:
-                from app.providers.agnes_provider import AgnesProvider
-                agnes_prov = AgnesProvider()
-                async for chunk in agnes_prov.stream_chat(
-                    messages=chat_messages,
-                    model="agnes-2.5-flash",
-                    temperature=temperature
-                ):
-                    if chunk.get("type") in ("content", "thinking"):
-                        has_streamed_content = True
-                    if chunk.get("type") == "error":
-                        continue
-                    yield chunk
-            except Exception as e:
-                print(f"[Gateway] Agnes fallback exception: {e}")
-
-        if has_streamed_content:
-            return
-
-        # Tier 3: OpenRouter Free Models Cascade
+        # Tier 3: Agnes Deep Reasoning Fallback (10 Rotating Keys)
         try:
-            or_key = os.getenv("OPENROUTER_API_KEY")
-            or_provider = OpenAICompatibleProvider(default_api_key=or_key, base_url="https://openrouter.ai/api/v1")
-            for fb_m in [
-                "nex-agi/nex-n2.5-pro:free",
-                "nvidia/nemotron-3-super-120b-a12b:free",
-                "nex-agi/nex-n2.5-mini:free",
-                "dots-studio/dots-3-note-preview:free"
-            ]:
-                try:
-                    async for chunk in or_provider.stream_chat(
-                        messages=chat_messages,
-                        model=fb_m,
-                        temperature=temperature,
-                        api_key=or_key
-                    ):
-                        if chunk.get("type") in ("content", "thinking"):
-                            has_streamed_content = True
-                        if chunk.get("type") == "error":
-                            continue
-                        yield chunk
-                    if has_streamed_content:
-                        return
-                except Exception:
+            from app.providers.agnes_provider import AgnesProvider
+            agnes_prov = AgnesProvider()
+            async for chunk in agnes_prov.stream_chat(
+                messages=chat_messages,
+                model="agnes-2.5-flash",
+                temperature=temperature
+            ):
+                if chunk.get("type") in ("content", "thinking"):
+                    has_streamed_content = True
+                if chunk.get("type") == "error":
                     continue
-        except Exception as e:
-            print(f"[Gateway] OpenRouter fallback exception: {e}")
+                yield chunk
+        except Exception as e_ag:
+            print(f"[Gateway] Agnes fallback exception: {e_ag}")
 
         if has_streamed_content:
             return
 
-        # Tier 4: Built-in Offline Fallback Responder (Fail-Safe Uptime Guarantee)
+        # Tier 4: Atria ASI Cognitive Reasoning Fallback (6 Rotating Keys)
+        try:
+            from app.providers.atria_provider import AtriaProvider
+            atria_prov = AtriaProvider()
+            async for chunk in atria_prov.stream_chat(
+                messages=chat_messages,
+                model="Atria-Dawn-Preview",
+                temperature=temperature
+            ):
+                if chunk.get("type") in ("content", "thinking"):
+                    has_streamed_content = True
+                if chunk.get("type") == "error":
+                    continue
+                yield chunk
+        except Exception as e_at:
+            print(f"[Gateway] Atria fallback exception: {e_at}")
+
+        if has_streamed_content:
+            return
+
+        # Tier 5: CleanAPIs Secondary Meta Muse Fallback
+        try:
+            from app.providers.codecraft_provider import CodeCraftProvider
+            cleanapis_provider = CodeCraftProvider(default_api_key="cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB")
+            async for chunk in cleanapis_provider.stream_chat(
+                messages=chat_messages,
+                model="muse-spark-1.1",
+                temperature=temperature,
+                api_key="cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
+            ):
+                if chunk.get("type") in ("content", "thinking"):
+                    has_streamed_content = True
+                if chunk.get("type") == "error":
+                    continue
+                yield chunk
+        except Exception as e_ca2:
+            print(f"[Gateway] CleanAPIs secondary fallback exception: {e_ca2}")
+
+        if has_streamed_content:
+            return
+
+        # Tier 6: Guaranteed Connection Notice when all external networks are down
         offline_content = self.generate_offline_response(latest_user_text, model_id)
         yield {
             "type": "content",

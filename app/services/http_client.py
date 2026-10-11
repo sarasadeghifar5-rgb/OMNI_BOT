@@ -41,7 +41,7 @@ def get_shared_http_client() -> httpx.AsyncClient:
             pool=10.0
         )
         _client = httpx.AsyncClient(
-            http2=True,
+            http2=False,
             limits=limits,
             timeout=timeout,
             follow_redirects=True,

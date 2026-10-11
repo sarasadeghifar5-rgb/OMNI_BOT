@@ -182,17 +182,17 @@ class AgnesVideoService:
                             "raw": data,
                         }
                     elif resp.status_code == 503:
-                        # Queue full on this model
+                        # Queue full on this key, try next key
                         self.pool.record_key_error(key, 503)
                         last_raw_error = "video_queue_full"
-                        logger.warning(f"Model {model_candidate} queue full on key {key[-6:]}")
-                        break  # Try next model candidate
+                        logger.warning(f"Model {model_candidate} queue full on key {key[-6:]}, rotating key...")
+                        continue
                     elif resp.status_code == 403:
-                        # Paid quota required or forbidden for this model
+                        # Paid quota required or forbidden for this key, try next key
                         self.pool.record_key_error(key, 403)
                         last_raw_error = "insufficient_user_quota"
-                        logger.warning(f"Model {model_candidate} 403 quota error on key {key[-6:]}")
-                        break  # Try next model candidate
+                        logger.warning(f"Model {model_candidate} 403 quota error on key {key[-6:]}, rotating key...")
+                        continue
                     elif resp.status_code == 429:
                         self.pool.record_key_error(key, 429)
                         last_raw_error = "rate_limit_exceeded"

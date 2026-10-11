@@ -46,7 +46,9 @@ async def handle_user_chat(message: Message, state: FSMContext):
         username=message.from_user.username,
         first_name=message.from_user.first_name
     )
-    selected_model = user.get("selected_model", "gemini")
+    selected_model = user.get("selected_model") or "gemini-3.7-flash"
+    if selected_model == "gemini":
+        selected_model = "gemini-3.7-flash"
     model_caps = get_model_capabilities(selected_model)
 
     # If user is in image studio mode, route directly to image generation
