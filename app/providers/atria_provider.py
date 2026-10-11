@@ -128,12 +128,18 @@ class AtriaProvider(BaseProvider):
             finally:
                 self.pool.release_key(key)
 
-        # If all Atria keys in pool failed, fallback seamlessly to Gemini
-        logger.error("All Atria keys in pool exhausted. Failing over to backup provider...")
+        # If all Atria keys in pool failed, fallback seamlessly to CleanAPIs (gemini-3.7-flash)
+        logger.error("All Atria keys in pool exhausted. Failing over to CleanAPIs backup provider...")
         try:
-            from app.providers.gemini_provider import GeminiProvider
-            gemini = GeminiProvider()
-            async for chunk in gemini.stream_chat(messages=messages, model="gemini", temperature=temperature, **kwargs):
+            from app.providers.codecraft_provider import CodeCraftProvider
+            cleanapis = CodeCraftProvider(default_api_key="cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB")
+            async for chunk in cleanapis.stream_chat(
+                messages=messages,
+                model="gemini-3.7-flash",
+                temperature=temperature,
+                api_key="cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB",
+                **kwargs
+            ):
                 yield chunk
         except Exception as e:
             logger.error(f"Fallback after Atria failure also errored: {e}")

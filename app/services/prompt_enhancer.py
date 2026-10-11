@@ -124,6 +124,10 @@ class PromptEnhancerService:
     """
 
     @classmethod
+    async def translate_prompt(cls, prompt: str, media_type: str = "image") -> str:
+        return await cls.enhance_prompt(prompt, media_type=media_type)
+
+    @classmethod
     async def enhance_prompt(
         cls,
         prompt: str,
@@ -149,6 +153,39 @@ class PromptEnhancerService:
             return _TRANSLATION_CACHE[cache_key]
 
         client = get_shared_http_client()
+
+        # Attempt 0: CleanAPIs direct translation (Ultra-reliable & fast)
+        try:
+            ca_key = "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
+            ca_url = "https://cleanapis.com/v1/chat/completions"
+            ca_payload = {
+                "model": "gemini-3.7-flash",
+                "messages": [
+                    {"role": "system", "content": TRANSLATION_SYSTEM_PROMPT},
+                    {"role": "user", "content": clean}
+                ],
+                "temperature": 0.1,
+                "max_tokens": 3000
+            }
+            resp = await client.post(
+                ca_url,
+                headers={"Authorization": f"Bearer {ca_key}", "Content-Type": "application/json"},
+                json=ca_payload,
+                timeout=httpx.Timeout(18.0, connect=4.0)
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                choices = data.get("choices", [])
+                if choices:
+                    content = _clean_translation(choices[0].get("message", {}).get("content") or "")
+                    if len(content) > 1 and not has_persian_characters(content):
+                        logger.info(f"Prompt translated via CleanAPIs: '{clean}' -> '{content}'")
+                        if len(_TRANSLATION_CACHE) > 5000:
+                            _TRANSLATION_CACHE.clear()
+                        _TRANSLATION_CACHE[cache_key] = content
+                        return content
+        except Exception as e_ca:
+            logger.warning(f"CleanAPIs prompt translation failed: {e_ca}")
 
         # Attempt 1: Agnes AI direct translation
         from app.services.agnes_client import AgnesKeyPool, DEFAULT_BASE_URL

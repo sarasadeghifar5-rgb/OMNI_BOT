@@ -686,6 +686,24 @@ async def execute_text_generation(
             pass
 
     if not result.get("success"):
+        logger.warning(f"Agnes generation failed ({result.get('error')}). Failing over to Puter AI...")
+        try:
+            from app.services.puter_image import PuterImageService
+            puter_res = await PuterImageService.generate_image(
+                prompt=enhanced_prompt,
+                model="nano-banana-pro" if size in ("2K", "4K") else "nano-banana",
+                aspect_ratio=ratio,
+                resolution=size if size in ("1K", "2K", "4K") else "1K"
+            )
+            if puter_res.get("success") and (puter_res.get("url") or puter_res.get("image_url")):
+                result = {
+                    "success": True,
+                    "url": puter_res.get("url") or puter_res.get("image_url")
+                }
+        except Exception as e_pt:
+            logger.warning(f"Puter fallback also failed: {e_pt}")
+
+    if not result.get("success"):
         err = result.get("error", "خطای ناشناخته")
         await status_msg.edit_text(
             f"⚠️ **متاسفانه در تولید تصویر خطایی رخ داد:**\n\n`{err}`\n\n"

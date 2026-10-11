@@ -20,9 +20,12 @@ class CodeCraftProvider(BaseProvider):
     """
 
     def __init__(self, default_api_key: Optional[str] = None):
+        raw_ca_url = (os.getenv("CLEANAPIS_BASE_URL") or os.getenv("CODECRAFT_BASE_URL") or DEFAULT_BASE_URL).rstrip("/")
+        if "codecraftapi.com" in raw_ca_url or not raw_ca_url:
+            raw_ca_url = DEFAULT_BASE_URL
         super().__init__(
             api_key=default_api_key,
-            base_url=os.getenv("CLEANAPIS_BASE_URL") or os.getenv("CODECRAFT_BASE_URL") or DEFAULT_BASE_URL
+            base_url=raw_ca_url
         )
         self.pool = CodeCraftKeyPool.get_instance()
 
@@ -67,7 +70,7 @@ class CodeCraftProvider(BaseProvider):
         client = get_shared_http_client()
 
         active_keys = self.pool.get_active_keys()
-        if api_key:
+        if api_key and api_key.startswith("cc_"):
             keys = [api_key] + [k for k in active_keys if k != api_key]
         else:
             keys = active_keys
@@ -144,7 +147,39 @@ class CodeCraftProvider(BaseProvider):
             finally:
                 self.pool.release_key(key)
 
-        # If all CodeCraft keys in pool failed, fallback seamlessly to Gemini
+        # If all keys failed for this model, retry with CleanAPIs' guaranteed model (gemini-3.7-flash)
+        if model != "gemini-3.7-flash":
+            logger.info("Retrying with CleanAPIs flagship model gemini-3.7-flash...")
+            try:
+                master_key = "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
+                headers = {"Authorization": f"Bearer {master_key}", "Content-Type": "application/json"}
+                fallback_payload = {"model": "gemini-3.7-flash", "messages": messages, "stream": True}
+                async with client.stream("POST", endpoint, headers=headers, json=fallback_payload, timeout=httpx.Timeout(30.0, connect=6.0)) as response:
+                    if response.status_code == 200:
+                        async for line in response.aiter_lines():
+                            if not line:
+                                continue
+                            line_str = line.strip()
+                            if line_str.startswith("data:"):
+                                data_text = line_str[len("data:"):].strip()
+                                if data_text == "[DONE]":
+                                    yield {"type": "done"}
+                                    return
+                                try:
+                                    chunk = json.loads(data_text)
+                                    choices = chunk.get("choices", [])
+                                    if choices:
+                                        content = choices[0].get("delta", {}).get("content")
+                                        if content:
+                                            yield {"type": "content", "content": content}
+                                except json.JSONDecodeError:
+                                    continue
+                        yield {"type": "done"}
+                        return
+            except Exception as e_fb:
+                logger.warning(f"CleanAPIs gemini-3.7-flash fallback exception: {e_fb}")
+
+        # If still failed, fallback to Gemini provider
         logger.error("All CodeCraft keys in pool exhausted. Failing over to backup provider...")
         try:
             from app.providers.gemini_provider import GeminiProvider

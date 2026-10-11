@@ -836,7 +836,7 @@ async def cb_test_all_keys(call: CallbackQuery):
         # Ping CC keys
         for n in cc_pool.nodes:
             try:
-                r = await client.get("https://codecraftapi.com/v1/models", headers=cc_pool.get_headers(n.key))
+                r = await client.get("https://cleanapis.com/v1/models", headers=cc_pool.get_headers(n.key))
                 if r.status_code == 200:
                     n.record_success()
                     cc_results.append(f"• `{n.label}`: 🟢 سالم (200 OK)")

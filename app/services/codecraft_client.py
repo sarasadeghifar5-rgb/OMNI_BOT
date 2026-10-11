@@ -64,22 +64,19 @@ class CodeCraftKeyPool:
         return cls._instance
 
     def load_keys(self):
-        keys_set = []
+        master_key = "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
+        keys_set = [master_key]
         raw_keys = (os.getenv("CLEANAPIS_API_KEYS") or os.getenv("CODECRAFT_API_KEYS", "")).strip()
         single_key = (os.getenv("CLEANAPIS_API_KEY") or os.getenv("CODECRAFT_API_KEY", "")).strip()
 
         if raw_keys:
             for k in raw_keys.replace("\n", ",").split(","):
                 clean = k.strip()
-                if clean and clean not in keys_set:
+                if clean and clean.startswith("cc_") and clean not in keys_set:
                     keys_set.append(clean)
 
-        if single_key and single_key not in keys_set:
+        if single_key and single_key.startswith("cc_") and single_key not in keys_set:
             keys_set.append(single_key)
-
-        for fb in FALLBACK_CODECRAFT_KEYS:
-            if fb not in keys_set:
-                keys_set.append(fb)
 
         self.nodes = [CodeCraftKeyNode(k) for k in keys_set]
         logger.info(f"CodeCraftKeyPool initialized with {len(self.nodes)} keys.")

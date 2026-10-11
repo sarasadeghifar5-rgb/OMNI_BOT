@@ -65,6 +65,12 @@ class LLMGateway:
         if user_keys.get(provider):
             return user_keys[provider].strip()
 
+        if provider in ("codecraft", "cleanapis"):
+            raw_ca = (os.getenv("CLEANAPIS_API_KEY") or os.getenv("CODECRAFT_API_KEY") or "").strip()
+            if raw_ca.startswith("cc_"):
+                return raw_ca
+            return "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
+
         # 2. Environment variables fallback
         env_map = {
             "codecraft": ["CLEANAPIS_API_KEYS", "CLEANAPIS_API_KEY", "CODECRAFT_API_KEYS", "CODECRAFT_API_KEY", "CODECRAFT_KEY"],
@@ -520,22 +526,22 @@ class LLMGateway:
             return
 
         # Tier 2: CleanAPIs High-Reliability Fallback (Guaranteed Online Flagship Models)
-        if provider_name not in ("codecraft", "cleanapis"):
-            try:
-                from app.providers.codecraft_provider import CodeCraftProvider
-                cleanapis_provider = CodeCraftProvider()
-                async for chunk in cleanapis_provider.stream_chat(
-                    messages=chat_messages,
-                    model="gemini-3.7-flash",
-                    temperature=temperature
-                ):
-                    if chunk.get("type") in ("content", "thinking"):
-                        has_streamed_content = True
-                    if chunk.get("type") == "error":
-                        continue
-                    yield chunk
-            except Exception as e_ca:
-                print(f"[Gateway] CleanAPIs fallback exception: {e_ca}")
+        try:
+            from app.providers.codecraft_provider import CodeCraftProvider
+            cleanapis_provider = CodeCraftProvider(default_api_key="cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB")
+            async for chunk in cleanapis_provider.stream_chat(
+                messages=chat_messages,
+                model="gemini-3.7-flash",
+                temperature=temperature,
+                api_key="cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
+            ):
+                if chunk.get("type") in ("content", "thinking"):
+                    has_streamed_content = True
+                if chunk.get("type") == "error":
+                    continue
+                yield chunk
+        except Exception as e_ca:
+            print(f"[Gateway] CleanAPIs fallback exception: {e_ca}")
 
         if has_streamed_content:
             return
