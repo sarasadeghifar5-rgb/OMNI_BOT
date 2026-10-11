@@ -122,7 +122,16 @@ class PuterImageService:
         if is_ascii and len(clean.split()) >= 6:
             return clean
 
-        # Fast bilingual dictionary for Persian terms
+        # Attempt high-quality AI translation preserving 100% of the prompt details
+        try:
+            from app.services.prompt_enhancer import PromptEnhancerService
+            translated = await PromptEnhancerService.translate_prompt(clean, media_type="image")
+            if translated and len(translated) > 3 and all(ord(c) < 128 for c in translated):
+                return translated
+        except Exception as e_trans:
+            print(f"[PuterImageService] High-quality translation fallback: {e_trans}")
+
+        # Fast bilingual dictionary for Persian terms (fallback)
         fa_en_dict = [
             ("تهران", "Tehran"), ("ایران", "Iran"), ("موز", "banana"),
             ("فضانورد", "astronaut"), ("فضا", "outer space"), ("سیاره", "planet"),

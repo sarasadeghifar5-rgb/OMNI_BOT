@@ -734,9 +734,12 @@ STAR_LOCKED_MODELS = {
     "deepseek-v4-pro-max",
 }
 
-CODECRAFT_API_KEY = os.getenv("CODECRAFT_API_KEY", "")
-CODECRAFT_API_KEYS = os.getenv("CODECRAFT_API_KEYS", "")
-CODECRAFT_BASE_URL = os.getenv("CODECRAFT_BASE_URL", "https://codecraftapi.com/v1")
+CLEANAPIS_API_KEY = os.getenv("CLEANAPIS_API_KEY") or os.getenv("CODECRAFT_API_KEY") or "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
+CLEANAPIS_API_KEYS = os.getenv("CLEANAPIS_API_KEYS") or os.getenv("CODECRAFT_API_KEYS") or "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
+CLEANAPIS_BASE_URL = os.getenv("CLEANAPIS_BASE_URL") or os.getenv("CODECRAFT_BASE_URL") or "https://cleanapis.com/v1"
+CODECRAFT_API_KEY = CLEANAPIS_API_KEY
+CODECRAFT_API_KEYS = CLEANAPIS_API_KEYS
+CODECRAFT_BASE_URL = CLEANAPIS_BASE_URL
 
 AGNES_API_KEY = os.getenv("AGNES_API_KEY", "")
 AGNES_API_KEYS = os.getenv("AGNES_API_KEYS", "")
@@ -759,6 +762,7 @@ PROVIDER_ENDPOINTS = {
     "atria": ATRIA_BASE_URL,
     "agnes": AGNES_BASE_URL,
     "codecraft": CODECRAFT_BASE_URL,
+    "cleanapis": CLEANAPIS_BASE_URL,
     "ollama": os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1"),
 }
 

@@ -67,7 +67,8 @@ class LLMGateway:
 
         # 2. Environment variables fallback
         env_map = {
-            "codecraft": ["CODECRAFT_API_KEYS", "CODECRAFT_API_KEY", "CODECRAFT_KEY"],
+            "codecraft": ["CLEANAPIS_API_KEYS", "CLEANAPIS_API_KEY", "CODECRAFT_API_KEYS", "CODECRAFT_API_KEY", "CODECRAFT_KEY"],
+            "cleanapis": ["CLEANAPIS_API_KEYS", "CLEANAPIS_API_KEY", "CODECRAFT_API_KEYS", "CODECRAFT_API_KEY", "CODECRAFT_KEY"],
             "openai": "OPENAI_API_KEY",
             "deepseek": "DEEPSEEK_API_KEY",
             "grok": ["GROK_API_KEY", "XAI_API_KEY"],
@@ -97,6 +98,9 @@ class LLMGateway:
                 if first_k:
                     return first_k
 
+        if provider in ("codecraft", "cleanapis"):
+            return "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB"
+
         return None
 
     def get_provider_instance(self, provider: str, api_key: Optional[str] = None):
@@ -107,7 +111,7 @@ class LLMGateway:
         elif provider == "agnes":
             from app.providers.agnes_provider import AgnesProvider
             return AgnesProvider(default_api_key=api_key)
-        elif provider == "codecraft":
+        elif provider in ("codecraft", "cleanapis"):
             from app.providers.codecraft_provider import CodeCraftProvider
             return CodeCraftProvider(default_api_key=api_key)
         elif provider == "atria":
@@ -283,11 +287,11 @@ class LLMGateway:
         model_label = model_id.replace("-", " ").title()
 
         # Greetings
-        if any(w in lower for w in ["سلام", "درود", "خوبی", "صبح بخیر", "عصر بخیر", "hi", "hello"]):
+        if any(w in lower for w in ["سلام", "درود", "خوبی", "صبح بخیر", "عصر بخیر", "hi", "hello", "های", "hey", "هلو", "چطوری", "سلامت باشی"]):
             return (
-                f"سلام و درود! من **{model_label}** هستم و در خدمت شما قرار دارم.\n\n"
-                "سرویس با موفقیت فعال و آماده پاسخگویی به سوالات، تحلیل متون، مسائل ریاضی و برنامه‌نویسی شماست. "
-                "چطور می‌توانم به شما کمک کنم؟"
+                f"سلام و درود! من **{model_label}** هستم و در خدمت شما قرار دارم. 😊\n\n"
+                "سرویس فعال و آماده پاسخگویی به پرسش‌ها، تحلیل متون، برنامه‌نویسی و گفتگو با شماست. "
+                "چطور می‌توانم کمکتان کنم؟"
             )
 
         # Identity questions
@@ -307,11 +311,10 @@ class LLMGateway:
 
         # General query
         return (
-            f"پرسش شما دریافت شد:\n\n"
+            f"سلام! پیام شما دریافت شد:\n\n"
             f"> *«{clean[:120]}»*\n\n"
-            f"**پاسخ هوش مصنوعی ({model_label}):**\n"
-            "موضوع شما بررسی شد. لطفاً در صورتی که نیاز به توضیحات بیشتر، کدنویسی، بسط تحلیل یا مثال‌های کاربردی دارید، "
-            "بفرمایید تا با دقت و جزییات کامل ادامه دهیم."
+            "متأسفانه در این لحظه ارتباط با سرورهای پردازش ابری این مدل با تأخیر موقت مواجه شد. "
+            "لطفاً چند لحظه دیگر پیام خود را مجدداً ارسال فرمایید یا از بخش «🤖 انتخاب مدل»، مدل دیگری مانند **Gemini 3.7 Flash** را انتخاب نمایید تا پاسخ فوری دریافت کنید."
         )
 
     async def stream_chat(
@@ -516,7 +519,28 @@ class LLMGateway:
         if has_streamed_content:
             return
 
-        # Tier 2: Gemini Resilient Provider
+        # Tier 2: CleanAPIs High-Reliability Fallback (Guaranteed Online Flagship Models)
+        if provider_name not in ("codecraft", "cleanapis"):
+            try:
+                from app.providers.codecraft_provider import CodeCraftProvider
+                cleanapis_provider = CodeCraftProvider()
+                async for chunk in cleanapis_provider.stream_chat(
+                    messages=chat_messages,
+                    model="gemini-3.7-flash",
+                    temperature=temperature
+                ):
+                    if chunk.get("type") in ("content", "thinking"):
+                        has_streamed_content = True
+                    if chunk.get("type") == "error":
+                        continue
+                    yield chunk
+            except Exception as e_ca:
+                print(f"[Gateway] CleanAPIs fallback exception: {e_ca}")
+
+        if has_streamed_content:
+            return
+
+        # Tier 2.5: Gemini Resilient Provider
         if provider_name != "gemini":
             try:
                 yield {

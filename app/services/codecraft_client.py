@@ -7,16 +7,11 @@ from typing import List, Optional, Dict, Any
 logger = logging.getLogger("CodeCraftClient")
 
 FALLBACK_CODECRAFT_KEYS = [
-    "cc_g1HdWuZ72dsGmCghLlW04B7GczsLqMR4wcMDFmpu3W5ot0sG",
-    "cc_sVtOv9QWQq9ea5A3DPGTNQaQrKZH0q3YmgNaimYqTeIWsWOZ",
-    "cc_x6MVyBHK0WLKuQSURNa1qidNlDl8gyqOXPjgP4htm2pm3TiK",
-    "cc_Z4gsapQGHXwAlEQnalCDUhNdE6bpa2oWEK4fGRgDRYYG0xZw",
-    "cc_StDRRPS0TXeaC1ZzGlhTi5GAh6RJxJQnZOuTDXC7TQVS9Tsz",
-    "cc_qXrudXHPnt1NhtB1e7LnyKdknZDN9IWcusl0teEpjRcikM4t",
-    "cc_uOkn60F5d6zX5Kv0CxLNaUmouwtIk7b5l2fSP7mVEqKMMIXr",
+    "cc_95SqyRcKCG5gd2hYjOiG5Ax3tSMiH1zvaT0QOGP4MPi0AloB",
 ]
 
-DEFAULT_BASE_URL = "https://codecraftapi.com/v1"
+DEFAULT_BASE_URL = "https://cleanapis.com/v1"
+
 
 
 class CodeCraftKeyNode:
@@ -70,8 +65,8 @@ class CodeCraftKeyPool:
 
     def load_keys(self):
         keys_set = []
-        raw_keys = os.getenv("CODECRAFT_API_KEYS", "").strip()
-        single_key = os.getenv("CODECRAFT_API_KEY", "").strip()
+        raw_keys = (os.getenv("CLEANAPIS_API_KEYS") or os.getenv("CODECRAFT_API_KEYS", "")).strip()
+        single_key = (os.getenv("CLEANAPIS_API_KEY") or os.getenv("CODECRAFT_API_KEY", "")).strip()
 
         if raw_keys:
             for k in raw_keys.replace("\n", ",").split(","):

@@ -476,15 +476,24 @@ async def deliver_image_safely(
     Uses ultra-fast direct URL delivery so users receive photos in < 1 second.
     """
     clean_prompt = (prompt or "").strip()
-    if len(clean_prompt) > 600:
-        clean_prompt = clean_prompt[:597] + "..."
+    is_long_prompt = len(clean_prompt) > 650
 
-    caption_text = (
-        f"{caption_title}\n\n"
-        f"📝 **پرامپت:** {clean_prompt}\n"
-        f"📐 **نسبت:** `{ratio}` | 📏 **کیفیت:** `{size}`\n"
-        f"✨ **مدل:** `Nano Banana Pro`"
-    )
+    if is_long_prompt:
+        caption_prompt = clean_prompt[:320] + "..."
+        caption_text = (
+            f"{caption_title}\n\n"
+            f"📝 **پرامپت:** {caption_prompt}\n"
+            f"📐 **نسبت:** `{ratio}` | 📏 **کیفیت:** `{size}`\n"
+            f"✨ **مدل:** `Nano Banana Pro`\n\n"
+            f"*(متن کامل پرامپت در پیام زیر ارسال شد 👇)*"
+        )
+    else:
+        caption_text = (
+            f"{caption_title}\n\n"
+            f"📝 **پرامپت:** {clean_prompt}\n"
+            f"📐 **نسبت:** `{ratio}` | 📏 **کیفیت:** `{size}`\n"
+            f"✨ **مدل:** `Nano Banana Pro`"
+        )
     if len(caption_text) > 950:
         caption_text = caption_text[:947] + "..."
 
@@ -574,6 +583,19 @@ async def deliver_image_safely(
             await status_msg.delete()
         except Exception:
             pass
+
+        # If prompt was long, deliver the full untruncated prompt in a dedicated text message
+        if is_long_prompt:
+            try:
+                from app.bot.utils import split_message
+                for p_chunk in split_message(clean_prompt, max_length=3800):
+                    await message.answer(
+                        f"📝 **متن کامل پرامپت ({len(clean_prompt)} کاراکتر):**\n\n"
+                        f"```text\n{p_chunk}\n```",
+                        parse_mode="Markdown"
+                    )
+            except Exception as e_pmsg:
+                logger.debug(f"Sending long prompt text failed: {e_pmsg}")
 
         # Non-blocking background caching: prepares RAM & disk cache for instant document requests
         async def _bg_cache_and_state():
@@ -895,7 +917,7 @@ async def execute_image_edit(
             prompt=edit_prompt,
             size=size,
             ratio=ratio,
-            timeout=70.0
+            timeout=120.0
         )
     finally:
         stop_ticker.set()

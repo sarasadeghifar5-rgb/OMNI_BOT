@@ -26,7 +26,7 @@ MIN_IMAGE_INTERVAL = 8.0                               # حداقل ۸ ثانی�
 MAX_IMAGES_PER_HOUR = 60                               # حداکثر ۶۰ عکس در ساعت
 
 # سدهای امنیتی محتوا و ضد داس (Anti-DoS / Payload Bombs)
-MAX_TEXT_LENGTH = 4000                                 # حداکثر طول مجاز متن پیام
+MAX_TEXT_LENGTH = 25000                                # حداکثر طول مجاز متن پیام (پشتیبانی کامل از پرامپت‌های طولانی عکس و ویدیو)
 MAX_FILE_SIZE_BYTES = 20 * 1024 * 1024                 # حداکثر حجم فایل/مدیا (۲۰ مگابایت)
 MAX_QUEUE_WAITERS = 300                                # حداکثر ظرفیت مجاز صف انتظار سرور (افزایش‌یافته برای ترافیک سازمانی)
 
@@ -267,7 +267,7 @@ class ThrottlingMiddleware(BaseMiddleware):
         if isinstance(event, Message):
             # بررسی طول متن
             if event.text and len(event.text) > MAX_TEXT_LENGTH:
-                await event.answer("⚠️ طول پیام شما بیش از حد مجاز است (حداکثر ۴۰۰۰ کاراکتر). لطفاً پیام خود را خلاصه‌تر ارسال فرمایید.")
+                await event.answer(f"⚠️ طول پیام شما بیش از حد مجاز است (حداکثر {MAX_TEXT_LENGTH} کاراکتر). لطفاً پیام خود را خلاصه‌تر ارسال فرمایید.")
                 return None
 
             # بررسی حجم فایل و رسانه‌های ارسالی

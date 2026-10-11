@@ -129,7 +129,7 @@ class ImageGenService:
                                     "You are an expert AI prompt engineer for photorealistic diffusion models (FLUX/SDXL). "
                                     "Translate any non-English prompt to English and optimize it with visual details, "
                                     "lighting, atmosphere, and authentic textures. "
-                                    "Keep it under 35 words. "
+                                    "Preserve every detail of the user's prompt completely without shortening it. "
                                     "Output ONLY the English prompt. Do not include quotes, explanations, or prefixes."
                                 )
                             },
@@ -138,7 +138,7 @@ class ImageGenService:
                                 "content": clean
                             }
                         ],
-                        "max_tokens": 100,
+                        "max_tokens": 2000,
                         "temperature": 0.5
                     }
                     resp = await client.post(

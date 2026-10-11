@@ -140,7 +140,7 @@ class AgnesVideoService:
         seconds = str(seconds) if str(seconds) in self.SUPPORTED_DURATIONS else "5"
 
         endpoint = f"{self.base_url}/videos"
-        candidate_models = ["agnes-video-v2.0", "agnes-video-2.5-flash", "agnes-video-2.5"]
+        candidate_models = ["agnes-video-2.5-flash", "agnes-video-2.5", "agnes-video-v2.0"]
         last_raw_error = "هیچ کلید معتبری در دسترس نیست."
 
         for model_candidate in candidate_models:

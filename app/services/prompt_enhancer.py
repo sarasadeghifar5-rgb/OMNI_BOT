@@ -166,13 +166,13 @@ class PromptEnhancerService:
                         {"role": "user", "content": clean}
                     ],
                     "temperature": 0.1,
-                    "max_tokens": 600
+                    "max_tokens": 3000
                 }
                 resp = await client.post(
                     endpoint,
                     headers=agnes_pool.get_headers(key),
                     json=payload,
-                    timeout=httpx.Timeout(12.0, connect=4.0)
+                    timeout=httpx.Timeout(15.0, connect=4.0)
                 )
                 if resp.status_code == 200:
                     agnes_pool.record_key_success(key)
@@ -202,7 +202,7 @@ class PromptEnhancerService:
             if gemini_key and gemini_key.startswith("AIza"):
                 for g_model in ["gemini-2.5-flash", "gemini-2.0-flash"]:
                     url = f"https://generativelanguage.googleapis.com/v1beta/models/{g_model}:generateContent?key={gemini_key}"
-                    gen_config = {"temperature": 0.1, "maxOutputTokens": 800}
+                    gen_config = {"temperature": 0.1, "maxOutputTokens": 3000}
                     if "2.5" in g_model:
                         # Disable "thinking" so the token budget is not consumed before the answer
                         gen_config["thinkingConfig"] = {"thinkingBudget": 0}

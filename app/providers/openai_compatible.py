@@ -113,8 +113,8 @@ class OpenAICompatibleProvider(BaseProvider):
                     err_bytes = await response.aread()
                     print(f"[OpenAICompatible] Upstream returned status {response.status_code}: {err_bytes[:200]}")
 
-                    # If CodeCraft, retry once after a short delay
-                    if "codecraftapi.com" in target_base_url:
+                    # If CodeCraft / CleanAPIs, retry once after a short delay
+                    if "codecraftapi.com" in target_base_url or "cleanapis.com" in target_base_url:
                         await asyncio.sleep(1.0)
                         try:
                             async with client.stream("POST", endpoint, headers=headers, json=payload) as retry_resp:

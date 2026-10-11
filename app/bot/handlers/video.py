@@ -556,16 +556,25 @@ async def execute_video_generation(
     await message.bot.send_chat_action(chat_id=message.chat.id, action=ChatAction.UPLOAD_VIDEO)
 
     # Safeguard prompt length and caption size for Telegram limit (1024 chars)
-    clean_prompt = prompt.strip() if prompt else ""
-    if len(clean_prompt) > 500:
-        clean_prompt = clean_prompt[:497] + "..."
+    clean_prompt = (prompt or "").strip()
+    is_long_prompt = len(clean_prompt) > 650
 
-    caption = (
-        f"🎬 **ویدیوی شما آماده شد!**\n\n"
-        f"📝 **توصیف:** {clean_prompt}\n"
-        f"📐 **نسبت:** `{ratio}` | ⏱ **مدت:** `{seconds} ثانیه`\n"
-        f"⚡ **موتور:** Nano Video Studio (Synchronized Audio-Video)"
-    )
+    if is_long_prompt:
+        caption_prompt = clean_prompt[:320] + "..."
+        caption = (
+            f"🎬 **ویدیوی شما آماده شد!**\n\n"
+            f"📝 **توصیف:** {caption_prompt}\n"
+            f"📐 **نسبت:** `{ratio}` | ⏱ **مدت:** `{seconds} ثانیه`\n"
+            f"⚡ **موتور:** Nano Video Studio (Synchronized Audio-Video)\n\n"
+            f"*(متن کامل پرامپت در پیام زیر ارسال شد 👇)*"
+        )
+    else:
+        caption = (
+            f"🎬 **ویدیوی شما آماده شد!**\n\n"
+            f"📝 **توصیف:** {clean_prompt}\n"
+            f"📐 **نسبت:** `{ratio}` | ⏱ **مدت:** `{seconds} ثانیه`\n"
+            f"⚡ **موتور:** Nano Video Studio (Synchronized Audio-Video)"
+        )
     if len(caption) > 950:
         caption = caption[:945] + "..."
 
@@ -649,6 +658,18 @@ async def execute_video_generation(
             await status_msg.delete()
         except Exception:
             pass
+
+        if is_long_prompt:
+            try:
+                from app.bot.utils import split_message
+                for p_chunk in split_message(clean_prompt, max_length=3800):
+                    await message.answer(
+                        f"📝 **متن کامل پرامپت ({len(clean_prompt)} کاراکتر):**\n\n"
+                        f"```text\n{p_chunk}\n```",
+                        parse_mode="Markdown"
+                    )
+            except Exception as e_pmsg:
+                logger.debug(f"Sending long video prompt text failed: {e_pmsg}")
     else:
         await status_msg.edit_text(
             "⚠️ **ویدیو با موفقیت ساخته شد، اما به دلیل اختلال ارتباطی سرور در ارسال به تلگرام با تاخیر مواجه شد.**\n"

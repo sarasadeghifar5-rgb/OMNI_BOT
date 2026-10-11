@@ -22,7 +22,7 @@ class CodeCraftProvider(BaseProvider):
     def __init__(self, default_api_key: Optional[str] = None):
         super().__init__(
             api_key=default_api_key,
-            base_url=os.getenv("CODECRAFT_BASE_URL") or DEFAULT_BASE_URL
+            base_url=os.getenv("CLEANAPIS_BASE_URL") or os.getenv("CODECRAFT_BASE_URL") or DEFAULT_BASE_URL
         )
         self.pool = CodeCraftKeyPool.get_instance()
 
@@ -66,7 +66,14 @@ class CodeCraftProvider(BaseProvider):
         from app.services.http_client import get_shared_http_client
         client = get_shared_http_client()
 
-        keys = [api_key] if api_key else self.pool.get_active_keys()
+        active_keys = self.pool.get_active_keys()
+        if api_key:
+            keys = [api_key] + [k for k in active_keys if k != api_key]
+        else:
+            keys = active_keys
+        if not keys:
+            from app.services.codecraft_client import FALLBACK_CODECRAFT_KEYS
+            keys = list(FALLBACK_CODECRAFT_KEYS)
 
         for key in keys:
             headers = self.pool.get_headers(key)
@@ -74,7 +81,7 @@ class CodeCraftProvider(BaseProvider):
             self.pool.acquire_key(key)
 
             try:
-                async with client.stream("POST", endpoint, headers=headers, json=payload) as response:
+                async with client.stream("POST", endpoint, headers=headers, json=payload, timeout=httpx.Timeout(40.0, connect=6.0)) as response:
                     if response.status_code == 200:
                         self.pool.record_key_success(key)
                         async for line in response.aiter_lines():
