@@ -719,20 +719,9 @@ AVAILABLE_MODELS: List[Dict[str, Any]] = [
     }
 ]
 
-# Set of models that require Telegram Stars / VIP subscription for regular users
-STAR_LOCKED_MODELS = {
-    "claude-fable-5.1",
-    "claude-fable-5",
-    "claude-opus-5.5",
-    "claude-opus-5",
-    "claude-opus-4.8",
-    "claude-opus-4.7",
-    "claude-opus-4.6",
-    "claude-mythos-preview",
-    "gpt-5.6-sol",
-    "gpt-5.5-pro",
-    "deepseek-v4-pro-max",
-}
+# Set of models that require Telegram Stars / VIP subscription for regular users (unlocked for all users)
+STAR_LOCKED_MODELS = set()
+
 
 _raw_ca_url = (os.getenv("CLEANAPIS_BASE_URL") or os.getenv("CODECRAFT_BASE_URL") or "https://cleanapis.com/v1").rstrip("/")
 if "codecraftapi.com" in _raw_ca_url or not _raw_ca_url:
@@ -953,3 +942,34 @@ def format_model_card(model_id: str, web_search_enabled: bool = False) -> str:
         f"{star_line}\n\n"
         "💬 پیام یا سوال خود را ارسال فرمایید:"
     )
+
+
+MODEL_NAMES = {m["id"]: m.get("name", m["id"]) for m in AVAILABLE_MODELS}
+MODEL_NAMES.update({
+    "gemini": "Google Gemini 3.7 Flash ⚡",
+    "gemini-3.7-flash": "Google Gemini 3.7 Flash ⚡",
+    "gemini-3.6-flash": "Google Gemini 3.6 Flash ⚡",
+    "gemini-3.1-pro": "Google Gemini 3.1 Pro 🌐",
+    "claude-opus-5.5": "Claude Opus 5.5 💎",
+    "claude-sonnet-5": "Claude Sonnet 5 🖋️",
+    "claude-fable-5.1": "Claude Fable 5.1 🌟",
+    "claude-fable-5": "Claude Fable 5 🌟",
+    "claude-opus-5": "Claude Opus 5 💎",
+    "claude-mythos-preview": "Claude Mythos Preview 🔮",
+    "gpt-5.6-sol": "GPT-5.6 Sol ☀️",
+    "gpt-5.5": "OpenAI GPT-5.5 ⚡",
+    "gpt-5.5-pro": "GPT-5.5 Pro 🚀",
+    "gpt-5.6-luna": "GPT-5.6 Luna 🌙",
+    "gpt-5.6-terra": "GPT-5.6 Terra 🌍",
+    "deepseek-v4-pro-max": "DeepSeek V4 Pro Max 🧠",
+    "deepseek-v4-flash-0731": "DeepSeek V4 Flash ⚡",
+    "deepseek-reasoner": "DeepSeek R1 (Reasoner) 🧠",
+    "Atria-Dawn-Preview": "Atria Dawn (256K) 🌅",
+    "agnes-2.5-flash": "Nano Reasoner 2.5 🧠",
+    "grok-4.6": "xAI Grok 4.6 🛸",
+    "qwen3.8-max": "Qwen 3.8 Max 👑",
+    "kimi-k3": "Moonshot Kimi K3 🌙",
+    "glm-5.3": "Zhipu AI GLM 5.3 🇨🇳",
+    "seed-2.1-turbo": "ByteDance Seed 2.1 🌱",
+    "muse-spark-1.1": "Muse Spark 1.1 ✨",
+})

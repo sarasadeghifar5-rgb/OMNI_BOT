@@ -100,6 +100,10 @@ class TelegramStreamEngine:
         elif etype == "sources":
             self.sources = event.get("sources", [])
 
+        elif etype == "error":
+            err = event.get("error", "Unknown error")
+            raise RuntimeError(err)
+
     async def _maybe_update_telegram(self, force: bool = False):
         """Dispatches an edit update if the minimum cadence interval has elapsed."""
         now = time.time()

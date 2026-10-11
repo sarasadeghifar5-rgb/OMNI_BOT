@@ -59,29 +59,29 @@ MODEL_CATEGORIES = {
         "title": "🌟 مدل‌های اختصاصی استار تلگرام (Star VIP)",
         "icon": "🌟",
         "models": [
-            ("claude-fable-5.1", "🌟 Claude Fable 5.1", True),
-            ("claude-fable-5", "🌟 Claude Fable 5", True),
-            ("claude-opus-5.5", "💎 Claude Opus 5.5", True),
-            ("claude-opus-5", "💎 Claude Opus 5", True),
-            ("claude-opus-4.8", "💎 Claude Opus 4.8", True),
-            ("claude-mythos-preview", "🔮 Claude Mythos Preview", True),
-            ("gpt-5.6-sol", "☀️ GPT-5.6 Sol", True),
-            ("gpt-5.5-pro", "🚀 GPT-5.5 Pro", True),
-            ("deepseek-v4-pro-max", "🧠 DeepSeek V4 Pro Max", True),
+            ("claude-fable-5.1", "🌟 Claude Fable 5.1", False),
+            ("claude-fable-5", "🌟 Claude Fable 5", False),
+            ("claude-opus-5.5", "💎 Claude Opus 5.5", False),
+            ("claude-opus-5", "💎 Claude Opus 5", False),
+            ("claude-opus-4.8", "💎 Claude Opus 4.8", False),
+            ("claude-mythos-preview", "🔮 Claude Mythos Preview", False),
+            ("gpt-5.6-sol", "☀️ GPT-5.6 Sol", False),
+            ("gpt-5.5-pro", "🚀 GPT-5.5 Pro", False),
+            ("deepseek-v4-pro-max", "🧠 DeepSeek V4 Pro Max", False),
         ]
     },
     "claude": {
         "title": "🖋️ خانواده Claude Anthropic",
         "icon": "🖋️",
         "models": [
-            ("claude-fable-5.1", "🌟 Claude Fable 5.1", True),
-            ("claude-fable-5", "🌟 Claude Fable 5", True),
-            ("claude-opus-5.5", "💎 Claude Opus 5.5", True),
-            ("claude-opus-5", "💎 Claude Opus 5", True),
-            ("claude-opus-4.8", "💎 Claude Opus 4.8", True),
-            ("claude-opus-4.7", "Claude Opus 4.7", True),
-            ("claude-opus-4.6", "Claude Opus 4.6", True),
-            ("claude-mythos-preview", "🔮 Claude Mythos Preview", True),
+            ("claude-fable-5.1", "🌟 Claude Fable 5.1", False),
+            ("claude-fable-5", "🌟 Claude Fable 5", False),
+            ("claude-opus-5.5", "💎 Claude Opus 5.5", False),
+            ("claude-opus-5", "💎 Claude Opus 5", False),
+            ("claude-opus-4.8", "💎 Claude Opus 4.8", False),
+            ("claude-opus-4.7", "Claude Opus 4.7", False),
+            ("claude-opus-4.6", "Claude Opus 4.6", False),
+            ("claude-mythos-preview", "🔮 Claude Mythos Preview", False),
             ("claude-sonnet-5", "🖋️ Claude Sonnet 5", False),
             ("claude-3-5-sonnet-20241022", "Claude 3.5 Sonnet", False),
         ]
@@ -90,10 +90,10 @@ MODEL_CATEGORIES = {
         "title": "⚡ خانواده OpenAI و GPT",
         "icon": "⚡",
         "models": [
-            ("gpt-5.6-sol", "☀️ GPT-5.6 Sol", True),
+            ("gpt-5.6-sol", "☀️ GPT-5.6 Sol", False),
             ("gpt-5.6-terra", "🌍 GPT-5.6 Terra", False),
             ("gpt-5.6-luna", "🌙 GPT-5.6 Luna", False),
-            ("gpt-5.5-pro", "🚀 GPT-5.5 Pro", True),
+            ("gpt-5.5-pro", "🚀 GPT-5.5 Pro", False),
             ("gpt-5.5", "⚡ GPT-5.5", False),
             ("gpt-4o", "✨ GPT-4o (Omni)", False),
             ("gpt-4o-mini", "GPT-4o Mini", False),
@@ -104,7 +104,7 @@ MODEL_CATEGORIES = {
         "title": "🧠 خانواده DeepSeek و استدلال",
         "icon": "🧠",
         "models": [
-            ("deepseek-v4-pro-max", "🧠 DeepSeek V4 Pro Max", True),
+            ("deepseek-v4-pro-max", "🧠 DeepSeek V4 Pro Max", False),
             ("deepseek-v4-pro-0813", "🧠 DeepSeek V4 Pro", False),
             ("deepseek-v4-flash-0731", "⚡ DeepSeek V4 Flash", False),
             ("deepseek-reasoner", "DeepSeek R1 (Reasoner)", False),
@@ -191,17 +191,9 @@ def get_category_models_keyboard(category: str, current_model: str = "gemini", i
     buttons = []
     for model_id, label, is_star_req in models:
         is_selected = (current_model == model_id)
-        is_locked = is_star_req and not is_vip_or_admin
-
-        if is_selected:
-            prefix = "✅ "
-        elif is_locked:
-            prefix = "🔒 "
-        else:
-            prefix = "▫️ "
-
+        prefix = "✅ " if is_selected else "▫️ "
         btn_text = f"{prefix}{label}"
-        cb_data = f"req_star:{model_id}" if is_locked else f"set_model:{model_id}"
+        cb_data = f"set_model:{model_id}"
         buttons.append([InlineKeyboardButton(text=btn_text, callback_data=cb_data)])
 
     buttons.append([
@@ -211,36 +203,28 @@ def get_category_models_keyboard(category: str, current_model: str = "gemini", i
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 
-def get_models_keyboard(current_model: str = "gemini", is_vip_or_admin: bool = False) -> InlineKeyboardMarkup:
+def get_models_keyboard(current_model: str = "gemini-3.7-flash", is_vip_or_admin: bool = False) -> InlineKeyboardMarkup:
     """Prominently displays the top flagship models directly, plus category navigation."""
     featured_models = [
-        ("claude-opus-5.5", "💎 Claude Opus 5.5", True),
-        ("claude-fable-5.1", "🌟 Claude Fable 5.1", True),
-        ("claude-opus-5", "💎 Claude Opus 5", True),
-        ("claude-fable-5", "🌟 Claude Fable 5", True),
-        ("gpt-5.6-sol", "☀️ GPT-5.6 Sol", True),
-        ("deepseek-v4-pro-max", "🧠 DeepSeek V4 Pro Max", True),
-        ("claude-sonnet-5", "🖋️ Claude Sonnet 5", False),
         ("gemini-3.7-flash", "⚡ Gemini 3.7 Flash", False),
+        ("claude-sonnet-5", "🖋️ Claude Sonnet 5", False),
+        ("claude-opus-5.5", "💎 Claude Opus 5.5", False),
+        ("gpt-5.5", "⚡ GPT-5.5 (Flagship)", False),
+        ("gpt-5.6-sol", "☀️ GPT-5.6 Sol", False),
+        ("deepseek-v4-pro-max", "🧠 DeepSeek V4 Pro Max", False),
+        ("deepseek-v4-flash-0731", "⚡ DeepSeek Flash", False),
         ("Atria-Dawn-Preview", "🌅 Atria Dawn (256K)", False),
-        ("deepseek-reasoner", "🧠 DeepSeek R1", False),
+        ("agnes-2.5-flash", "🧠 Nano Reasoner", False),
+        ("grok-4.6", "🛸 xAI Grok 4.6", False),
     ]
 
     buttons = []
     row = []
     for model_id, label, is_star_req in featured_models:
         is_selected = (current_model == model_id)
-        is_locked = is_star_req and not is_vip_or_admin
-
-        if is_selected:
-            prefix = "✅ "
-        elif is_locked:
-            prefix = "🔒 "
-        else:
-            prefix = ""
-
+        prefix = "✅ " if is_selected else ""
         btn_text = f"{prefix}{label}"
-        cb_data = f"req_star:{model_id}" if is_locked else f"set_model:{model_id}"
+        cb_data = f"set_model:{model_id}"
 
         row.append(InlineKeyboardButton(text=btn_text, callback_data=cb_data))
         if len(row) == 2:
