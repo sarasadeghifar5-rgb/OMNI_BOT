@@ -1,0 +1,73 @@
+{
+  "id": "session_1790093764706",
+  "title": "های",
+  "model": "deepseek-reasoner",
+  "messages": [
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790093767706
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! چطور می‌توانم کمکتان کنم؟",
+      "thinking": "The user writes \"های\" which is incomplete. Likely a greeting \"سلام\" or something. They likely want a greeting. We just respond politely. Probably \"سلام! چطور می‌توانم کمکتان کنم؟\"",
+      "sources": [],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790093767710,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "چخبر",
+      "images": [],
+      "timestamp": 1790093777241
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! همه چیز خوبه، حتماً در خدمت شما هستم. چه کمکی می‌تونم براتون بکنم؟",
+      "thinking": "User says \"چخبر\" (probably \"چه خبر؟\" meaning \"What's up?\"). They want a friendly answer. We should respond in Persian. Probably a friendly response.",
+      "sources": [],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790093777246,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "سلام چطوری خوبی چیکار می‌کنی فردا کی میری",
+      "images": [],
+      "timestamp": 1790093797787
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! امیدوارم روزت عالی باشد.  \nاگر منظور شما این است که **چه زمانی فردا می‌توانی حرکت کنی؟**، بستگی به برنامه‌ریزی‌ات و شرایطی مثل ترافیک، زمان رفت و برگشت، و یا امکانات حمل‌و‌نقل دارد. اگر به من جزئیات بیشتری بدهی—مثلاً مقصد، زمان‌های پیشنهادی، یا محدودیت‌های خاص—من می‌توانم برایت یک زمان مناسب پیشنهاد دهم.  \n\nدر غیر این صورت، اگر سؤال دیگری داشتی، خوشحال می‌شم کمک کنم!",
+      "thinking": "User says: \"سلام چطوری خوبی چیکار می‌کنی فردا کی میری\" in Persian. They likely ask about day of my departure? They might ask \"When do I leave tomorrow?\" or \"When am I going tomorrow?\" Maybe they want to know when to go somewhere. We need to respond in Persian. There's no disallowed content. We comply.",
+      "sources": [],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790093797793,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "/gemini_image مردم در تهران",
+      "images": [],
+      "timestamp": 1790093892851
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر تولید شده با مدل هوش مصنوعی Google Gemini (Google Gemini (Intelligent Visual Engine)):\n\n**پرامپت:** مردم در تهران\n\n![مردم در تهران](/static/generated/gemini_art_1790093899_627435ac.svg)\n\n[📥 مشاهده و دانلود تصویر با کیفیت بالا](/static/generated/gemini_art_1790093899_627435ac.svg)\n\n*(برای ایجاد تغییرات کافیست در پیام بعدی بگویید: «تغییر بده: ...» یا «حالا ... اضافه کن»)*",
+      "thinking": "",
+      "sources": [],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790093892858,
+      "imageGenerating": true,
+      "imageStatusText": "🎨 در حال تصویرسازی با مدل هوش مصنوعی Google Gemini: مردم در تهران..."
+    }
+  ],
+  "created_at": 1790093770.849623,
+  "updated_at": 1790093899.2546268
+}

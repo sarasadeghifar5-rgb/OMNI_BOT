@@ -1,0 +1,41 @@
+{
+  "id": "session_1790107063923",
+  "title": "سلام",
+  "model": "deepseek-reasoner",
+  "messages": [
+    {
+      "role": "user",
+      "content": "سلام",
+      "images": [],
+      "timestamp": 1790107073945
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! من دیپ‌سیک V3 (DeepSeek-V3) هستم، یک مدل زبانی بزرگ که توسط دیپ‌سیک توسعه یافته‌ام. چطور می‌توانم امروز به شما کمک کنم؟",
+      "thinking": "",
+      "sources": [],
+      "model": "deepseek-chat",
+      "timestamp": 1790107073950,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "سلام",
+      "images": [],
+      "timestamp": 1790107307547
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! من دیپ‌سیک R1 (DeepSeek-R1) هستم، یک مدل هوش مصنوعی پیشرفته که توسط شرکت دیپ‌سیک (DeepSeek) توسعه یافته‌ام.\n\nخوشحالم که دوباره با شما صحبت می‌کنم. چطور می‌توانم امروز به شما کمک کنم؟",
+      "thinking": "",
+      "sources": [],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790107307553,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790107085.125208,
+  "updated_at": 1790107345.6597605
+}

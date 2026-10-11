@@ -1,0 +1,24 @@
+# Python & Environment
+.env
+*.env
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+*.sqlite3-journal
+
+# Logs & Temporary files
+*.log
+scratch/
+output/
+slides_preview/
+slides_preview_rtl/
+*.pptx
+*.png
+*.jpg
+
+# OS & Editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

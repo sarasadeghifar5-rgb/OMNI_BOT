@@ -1,0 +1,23 @@
+{
+  "id": "session_1790031422915",
+  "title": "سامت چیه",
+  "model": "claude-3-5-sonnet-20241022",
+  "messages": [
+    {
+      "role": "user",
+      "content": "سامت چیه",
+      "images": [],
+      "timestamp": 1790031429369
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! من **OmniLLM** هستم، یک مدل زبانی هوش مصنوعی که برای کمک به شما در پاسخ به سوالات و ارائه اطلاعات طراحی شده‌ام. اگر سؤال یا موضوع خاصی دارید، خوشحال می‌شوم کمک کنم!",
+      "thinking": "The user asks in Persian: \"سامت چیه\" which means \"What is your name?\" They want the assistant to respond in Persian, presumably politely. We should answer with the name \"OmniLLM\" or something. According to system messages, we are \"OmniLLM\". So respond politely: \"من اسم من OmniLLM است\". They might want \"سامت\" meaning \"What is your name?\" So respond accordingly.",
+      "sources": [],
+      "model": "claude-3-5-sonnet-20241022",
+      "timestamp": 1790031429372
+    }
+  ],
+  "created_at": 1790031447.7140856,
+  "updated_at": 1790031447.7140856
+}

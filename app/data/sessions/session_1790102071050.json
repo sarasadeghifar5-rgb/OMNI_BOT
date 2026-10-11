@@ -1,0 +1,89 @@
+{
+  "id": "session_1790102071050",
+  "title": "های",
+  "model": "deepseek-reasoner",
+  "messages": [
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790102077100
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! امیدوارم روزتان خوب باشد. چطور می‌توانم کمکتان کنم؟",
+      "thinking": "The user typed \"های\". Likely a greeting \"سلام\" but they wrote \"های\". Maybe they just typed \"های\" which means \"hi\" in Persian. We need to respond in Persian, polite, natural. We should greet back. So respond \"سلام، چطور هستید؟\" or something. No code. No math. Just Persian.",
+      "sources": [],
+      "model": "o1",
+      "timestamp": 1790102077107,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790102092021
+    },
+    {
+      "role": "assistant",
+      "content": "The account behind this API key doesn't have enough credits. Please [top up](https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup) or [complete a quest](https://enter.pollinations.ai/quests?ref=agent_low_balance_quests), then try again.\n\nIf this isn’t your Pollinations account, contact whoever runs the app or service you’re using.",
+      "thinking": "",
+      "sources": [],
+      "model": "glm-4-plus",
+      "timestamp": 1790102092027,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790102107446
+    },
+    {
+      "role": "assistant",
+      "content": "The account behind this API key doesn't have enough credits. Please [top up](https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup) or [complete a quest](https://enter.pollinations.ai/quests?ref=agent_low_balance_quests), then try again.\n\nIf this isn’t your Pollinations account, contact whoever runs the app or service you’re using.",
+      "thinking": "",
+      "sources": [],
+      "model": "glm-4v-plus",
+      "timestamp": 1790102107452,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790102138164
+    },
+    {
+      "role": "assistant",
+      "content": "The account behind this API key doesn't have enough credits. Please [top up](https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup) or [complete a quest](https://enter.pollinations.ai/quests?ref=agent_low_balance_quests), then try again.\n\nIf this isn’t your Pollinations account, contact whoever runs the app or service you’re using.",
+      "thinking": "",
+      "sources": [],
+      "model": "glm-4-flash",
+      "timestamp": 1790102138170,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790102159319
+    },
+    {
+      "role": "assistant",
+      "content": "The account behind this API key doesn't have enough credits. Please [top up](https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup) or [complete a quest](https://enter.pollinations.ai/quests?ref=agent_low_balance_quests), then try again.\n\nIf this isn’t your Pollinations account, contact whoever runs the app or service you’re using.",
+      "thinking": "",
+      "sources": [],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790102159326,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790102080.0883114,
+  "updated_at": 1790102185.3418548
+}

@@ -1,0 +1,25 @@
+{
+  "id": "session_1790088068229",
+  "title": "های",
+  "model": "z-ai/glm-5.2:free",
+  "messages": [
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790088070703
+    },
+    {
+      "role": "assistant",
+      "content": "\n\n> ⚠️ **خطا:** خطا از سوی سرویس‌دهنده (429): Provider returned error",
+      "thinking": "",
+      "sources": [],
+      "model": "z-ai/glm-5.2:free",
+      "timestamp": 1790088070707,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790088079.7019737,
+  "updated_at": 1790088079.7019737
+}

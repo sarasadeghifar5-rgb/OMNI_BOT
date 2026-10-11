@@ -1,0 +1,25 @@
+{
+  "id": "session_1790107372821",
+  "title": "خوبی",
+  "model": "gpt-4o",
+  "messages": [
+    {
+      "role": "user",
+      "content": "خوبی",
+      "images": [],
+      "timestamp": 1790107378990
+    },
+    {
+      "role": "assistant",
+      "content": "ممنونم، من خوب هستم! شما چطورید؟ امیدوارم روز خوبی داشته باشید. چطور می‌توانم امروز به شما کمک کنم؟",
+      "thinking": "",
+      "sources": [],
+      "model": "gpt-4o",
+      "timestamp": 1790107378995,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790107396.2084553,
+  "updated_at": 1790107396.2084553
+}

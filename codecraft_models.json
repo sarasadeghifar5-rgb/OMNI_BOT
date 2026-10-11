@@ -1,0 +1,600 @@
+[
+  {
+    "id": "gemma-2-2b",
+    "name": "Gemma 2 2B",
+    "description": "Lightweight open model by Google. Fast and efficient for everyday tasks.",
+    "type": "chat",
+    "status": "active",
+    "context": 8192,
+    "input": 0.000115,
+    "output": 0.00023,
+    "caps": [
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/gemini.png"
+  },
+  {
+    "id": "deepseek-v4-flash-0731",
+    "name": "DeepSeek-V4-Flash-0731",
+    "description": "DeepSeek fast open model. Very affordable with solid reasoning, 304B params.",
+    "type": "chat",
+    "status": "active",
+    "context": 1048576,
+    "input": 0.000115,
+    "output": 0.000115,
+    "caps": [
+      "reasoning",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/deepseek.png"
+  },
+  {
+    "id": "gpt-5.6-luna",
+    "name": "GPT-5.6 Luna",
+    "description": "OpenAI efficient model. Great value with strong reasoning, 290c/s speed.",
+    "type": "chat",
+    "status": "active",
+    "context": 1050000,
+    "input": 0.0003565,
+    "output": 0.0003565,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/chatgpt.png"
+  },
+  {
+    "id": "deepseek-v4-pro-0813",
+    "name": "DeepSeek-V4-Pro-0813",
+    "description": "DeepSeek open-source pro model. Excellent reasoning and coding, 1.6T params.",
+    "type": "chat",
+    "status": "active",
+    "context": 1048576,
+    "input": 0.000552,
+    "output": 0.000552,
+    "caps": [
+      "reasoning",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/deepseek.png"
+  },
+  {
+    "id": "qwen3.8-27b",
+    "name": "Qwen3.8-27B",
+    "description": "Alibaba Qwen compact open model. Efficient 27.8B params with solid capability.",
+    "type": "chat",
+    "status": "active",
+    "context": 262144,
+    "input": 0.000575,
+    "output": 0.000575,
+    "caps": [
+      "reasoning",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/qwen.png"
+  },
+  {
+    "id": "seed-2.1-turbo",
+    "name": "Seed 2.1 Turbo",
+    "description": "ByteDance Seed turbo model. Fast with solid reasoning and coding.",
+    "type": "chat",
+    "status": "active",
+    "context": 262144,
+    "input": 0.00092,
+    "output": 0.00092,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/bytedance.png"
+  },
+  {
+    "id": "seed-2.1-pro",
+    "name": "Seed 2.1 Pro",
+    "description": "ByteDance Seed series pro model. Strong reasoning and coding.",
+    "type": "chat",
+    "status": "active",
+    "context": 262144,
+    "input": 0.00115,
+    "output": 0.00115,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/bytedance.png"
+  },
+  {
+    "id": "kimi-k2.6",
+    "name": "Kimi K2.6",
+    "description": "Moonshot AI open model. Strong reasoning and coding, 1.0T params.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.001219,
+    "output": 0.001219,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/kimi.png"
+  },
+  {
+    "id": "gemini-3.7-flash",
+    "name": "Gemini 3.7 Flash",
+    "description": "Google latest Flash model. Very fast with strong reasoning, 479c/s.",
+    "type": "chat",
+    "status": "active",
+    "context": 1048576,
+    "input": 0.001242,
+    "output": 0.001242,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/gemini.png"
+  },
+  {
+    "id": "glm-5.3",
+    "name": "GLM-5.3",
+    "description": "Zhipu AI latest model. Strong reasoning and agentic capability, 753B params.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.001357,
+    "output": 0.001357,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/zhipu.png"
+  },
+  {
+    "id": "glm-5.2",
+    "name": "GLM-5.2",
+    "description": "Zhipu AI open model. Good reasoning and coding, 753B params.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.001357,
+    "output": 0.001357,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/zhipu.png"
+  },
+  {
+    "id": "qwen3.8-max",
+    "name": "Qwen3.8 Max",
+    "description": "Alibaba Qwen flagship open model. Strong all-round capability, 2.4T params.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.0017595,
+    "output": 0.0017595,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/qwen.png"
+  },
+  {
+    "id": "qwen3.7-max",
+    "name": "Qwen3.7 Max",
+    "description": "Alibaba Qwen pro model. Strong reasoning and coding performance.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.0017595,
+    "output": 0.0017595,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/qwen.png"
+  },
+  {
+    "id": "muse-spark-1.1",
+    "name": "Muse Spark 1.1",
+    "description": "Meta Muse Spark series. Fast and capable with strong reasoning scores.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.001817,
+    "output": 0.001817,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/zhipu.png"
+  },
+  {
+    "id": "deepseek-v4-pro-max",
+    "name": "DeepSeek-V4-Pro-Max",
+    "description": "DeepSeek top open model. Maximum capability with 1.6T params.",
+    "type": "chat",
+    "status": "active",
+    "context": 1048576,
+    "input": 0.002047,
+    "output": 0.002047,
+    "caps": [
+      "reasoning",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/deepseek.png"
+  },
+  {
+    "id": "gemini-3.6-flash",
+    "name": "Gemini 3.6 Flash",
+    "description": "Google fast model. Very quick responses with good reasoning, 364c/s.",
+    "type": "chat",
+    "status": "active",
+    "context": 1048576,
+    "input": 0.0024955,
+    "output": 0.0024955,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/gemini.png"
+  },
+  {
+    "id": "grok-4.5",
+    "name": "Grok 4.5",
+    "description": "xAI model. Strong reasoning and agentic capability.",
+    "type": "chat",
+    "status": "active",
+    "context": 500000,
+    "input": 0.002806,
+    "output": 0.002806,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/grok.svg"
+  },
+  {
+    "id": "grok-4.6",
+    "name": "Grok 4.6",
+    "description": "xAI latest model. Improved reasoning and coding over 4.5.",
+    "type": "chat",
+    "status": "active",
+    "context": 500000,
+    "input": 0.002806,
+    "output": 0.002806,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/grok.svg"
+  },
+  {
+    "id": "claude-sonnet-5",
+    "name": "Claude Sonnet 5",
+    "description": "Anthropic balanced model. Great coding and reasoning at a lower cost.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.0033235,
+    "output": 0.0033235,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/claude.png"
+  },
+  {
+    "id": "gpt-5.6-terra",
+    "name": "GPT-5.6 Terra",
+    "description": "OpenAI high-end model. Strong reasoning and coding at a mid price point.",
+    "type": "chat",
+    "status": "active",
+    "context": 1050000,
+    "input": 0.0035765,
+    "output": 0.0035765,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/chatgpt.png"
+  },
+  {
+    "id": "gemini-3.1-pro",
+    "name": "Gemini 3.1 Pro",
+    "description": "Google pro model. Strong reasoning and coding with high Code Arena score.",
+    "type": "chat",
+    "status": "active",
+    "context": 1048576,
+    "input": 0.0044735,
+    "output": 0.0044735,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/gemini.png"
+  },
+  {
+    "id": "kimi-k3",
+    "name": "Kimi K3",
+    "description": "Moonshot AI open-source flagship. Strong reasoning and coding, 2.8T params.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.0049795,
+    "output": 0.0049795,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode",
+      "web_search"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/kimi.png"
+  },
+  {
+    "id": "claude-opus-5",
+    "name": "Claude Opus 5",
+    "description": "Anthropic's most capable model. Exceptional reasoning and agentic performance.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.008303,
+    "output": 0.008303,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/claude.png"
+  },
+  {
+    "id": "claude-mythos-preview",
+    "name": "Claude Mythos Preview",
+    "description": "Anthropic next-gen preview model. Cutting-edge reasoning, not yet generally released.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.008303,
+    "output": 0.008303,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/claude.png"
+  },
+  {
+    "id": "claude-opus-4.8",
+    "name": "Claude Opus 4.8",
+    "description": "Anthropic Opus-class model. Reliable reasoning and coding performance.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.008303,
+    "output": 0.008303,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/claude.png"
+  },
+  {
+    "id": "claude-opus-4.6",
+    "name": "Claude Opus 4.6",
+    "description": "Anthropic Opus-class model. Reliable reasoning and agentic performance.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.008303,
+    "output": 0.008303,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/claude.png"
+  },
+  {
+    "id": "claude-opus-4.7",
+    "name": "Claude Opus 4.7",
+    "description": "Anthropic Opus-class model. Strong coding and reasoning, high Code Arena score.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.008303,
+    "output": 0.008303,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/claude.png"
+  },
+  {
+    "id": "claude-opus-5.5",
+    "name": "Claude Opus 5.5",
+    "description": "Anthropic's most capable model. Exceptional reasoning and agentic performance.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.008303,
+    "output": 0.008303,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/claude.png"
+  },
+  {
+    "id": "gpt-5.6-sol",
+    "name": "GPT-5.6 Sol",
+    "description": "OpenAI flagship model. Top-tier reasoning, coding, and agentic capability.",
+    "type": "chat",
+    "status": "active",
+    "context": 1050000,
+    "input": 0.008947,
+    "output": 0.008947,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/chatgpt.png"
+  },
+  {
+    "id": "gpt-5.5",
+    "name": "GPT-5.5",
+    "description": "OpenAI capable model. Solid reasoning and coding performance.",
+    "type": "chat",
+    "status": "active",
+    "context": 1050000,
+    "input": 0.008947,
+    "output": 0.008947,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/chatgpt.png"
+  },
+  {
+    "id": "gpt-5.5-pro",
+    "name": "GPT-5.5 Pro",
+    "description": "OpenAI pro-tier model. Enhanced reasoning and coding over base 5.5.",
+    "type": "chat",
+    "status": "active",
+    "context": 1050000,
+    "input": 0.008947,
+    "output": 0.008947,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/chatgpt.png"
+  },
+  {
+    "id": "claude-fable-5",
+    "name": "Claude Fable 5",
+    "description": "Anthropic premium model. Outstanding coding and reasoning with top Code Arena score.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.016606,
+    "output": 0.016606,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/claude.png"
+  },
+  {
+    "id": "claude-fable-5.1",
+    "name": "Claude Fable 5.1",
+    "description": "Anthropic premium model. Outstanding coding and reasoning with top Code Arena score.",
+    "type": "chat",
+    "status": "active",
+    "context": 1000000,
+    "input": 0.016606,
+    "output": 0.016606,
+    "caps": [
+      "reasoning",
+      "vision",
+      "tools",
+      "streaming",
+      "json_mode"
+    ],
+    "icon_url": "https://codecraftapi.com/images/models/claude.png"
+  }
+]

@@ -1,0 +1,107 @@
+{
+  "id": "session_1790082862828",
+  "title": "چخبر",
+  "model": "gemini-3.6-flash",
+  "messages": [
+    {
+      "role": "user",
+      "content": "چخبر",
+      "images": [],
+      "timestamp": 1790082868027
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! خبر سلامتی، همه چیز خوب پیش می‌ره. شما چطورید؟ \n\nامروز چطور می‌تونم کمکتون کنم؟",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790082868031
+    },
+    {
+      "role": "user",
+      "content": "/image یک دو چرخه در ایران",
+      "images": [],
+      "timestamp": 1790084598910
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر تولید شده با مدل هوش مصنوعی FLUX:\n\n**پرامپت:** یک دو چرخه در ایران\n\n![یک دو چرخه در ایران](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D8%AF%D9%88%20%DA%86%D8%B1%D8%AE%D9%87%20%D8%AF%D8%B1%20%D8%A7%DB%8C%D8%B1%D8%A7%D9%86?width=1024&height=1024&model=flux&enhance=true&seed=3478237&nologo=true)\n\n[📥 مشاهده و دانلود با کیفیت ۱۰۲۴x۱۰۲۴](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D8%AF%D9%88%20%DA%86%D8%B1%D8%AE%D9%87%20%D8%AF%D8%B1%20%D8%A7%DB%8C%D8%B1%D8%A7%D9%86?width=1024&height=1024&model=flux&enhance=true&seed=3478237&nologo=true)",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790084598914
+    },
+    {
+      "role": "user",
+      "content": "سلام چطوری",
+      "images": [],
+      "timestamp": 1790084634935
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! ممنون، من خوبم. شما چطورید؟ همه چیز خوب می‌گذره؟\n\nامروز چطور می‌توانم کمکتون کنم؟",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790084634939
+    },
+    {
+      "role": "user",
+      "content": "/image سلام چطوری چه خبرا",
+      "images": [],
+      "timestamp": 1790086684163
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر تولید شده با مدل هوش مصنوعی FLUX:\n\n**پرامپت:** سلام چطوری چه خبرا\n\n![سلام چطوری چه خبرا](https://image.pollinations.ai/prompt/%D8%B3%D9%84%D8%A7%D9%85%20%DA%86%D8%B7%D9%88%D8%B1%DB%8C%20%DA%86%D9%87%20%D8%AE%D8%A8%D8%B1%D8%A7?width=1024&height=1024&model=flux&enhance=true&seed=8325806&nologo=true)\n\n[📥 مشاهده و دانلود با کیفیت ۱۰۲۴x۱۰۲۴](https://image.pollinations.ai/prompt/%D8%B3%D9%84%D8%A7%D9%85%20%DA%86%D8%B7%D9%88%D8%B1%DB%8C%20%DA%86%D9%87%20%D8%AE%D8%A8%D8%B1%D8%A7?width=1024&height=1024&model=flux&enhance=true&seed=8325806&nologo=true)\n\n*(برای ایجاد تغییرات کافیست در پیام بعدی بگویید: «تغییر بده: ...» یا «حالا ... اضافه کن»)*",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790086684168
+    },
+    {
+      "role": "user",
+      "content": "/image یک منظره رویایی و سینمایی با نورپردازی نئونی",
+      "images": [],
+      "timestamp": 1790086685547
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر تولید شده با مدل هوش مصنوعی FLUX:\n\n**پرامپت:** یک منظره رویایی و سینمایی با نورپردازی نئونی\n\n![یک منظره رویایی و سینمایی با نورپردازی نئونی](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D9%85%D9%86%D8%B8%D8%B1%D9%87%20%D8%B1%D9%88%DB%8C%D8%A7%DB%8C%DB%8C%20%D9%88%20%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C%20%D8%A8%D8%A7%20%D9%86%D9%88%D8%B1%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%DB%8C%20%D9%86%D8%A6%D9%88%D9%86%DB%8C?width=1024&height=1024&model=flux&enhance=true&seed=2759390&nologo=true)\n\n[📥 مشاهده و دانلود با کیفیت ۱۰۲۴x۱۰۲۴](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D9%85%D9%86%D8%B8%D8%B1%D9%87%20%D8%B1%D9%88%DB%8C%D8%A7%DB%8C%DB%8C%20%D9%88%20%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C%20%D8%A8%D8%A7%20%D9%86%D9%88%D8%B1%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%DB%8C%20%D9%86%D8%A6%D9%88%D9%86%DB%8C?width=1024&height=1024&model=flux&enhance=true&seed=2759390&nologo=true)\n\n*(برای ایجاد تغییرات کافیست در پیام بعدی بگویید: «تغییر بده: ...» یا «حالا ... اضافه کن»)*",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790086685551
+    },
+    {
+      "role": "user",
+      "content": "/image یک منظره رویایی و سینمایی با نورپردازی نئونی",
+      "images": [],
+      "timestamp": 1790086686347
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر تولید شده با مدل هوش مصنوعی FLUX:\n\n**پرامپت:** یک منظره رویایی و سینمایی با نورپردازی نئونی\n\n![یک منظره رویایی و سینمایی با نورپردازی نئونی](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D9%85%D9%86%D8%B8%D8%B1%D9%87%20%D8%B1%D9%88%DB%8C%D8%A7%DB%8C%DB%8C%20%D9%88%20%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C%20%D8%A8%D8%A7%20%D9%86%D9%88%D8%B1%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%DB%8C%20%D9%86%D8%A6%D9%88%D9%86%DB%8C?width=1024&height=1024&model=flux&enhance=true&seed=5718919&nologo=true)\n\n[📥 مشاهده و دانلود با کیفیت ۱۰۲۴x۱۰۲۴](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D9%85%D9%86%D8%B8%D8%B1%D9%87%20%D8%B1%D9%88%DB%8C%D8%A7%DB%8C%DB%8C%20%D9%88%20%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C%20%D8%A8%D8%A7%20%D9%86%D9%88%D8%B1%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%DB%8C%20%D9%86%D8%A6%D9%88%D9%86%DB%8C?width=1024&height=1024&model=flux&enhance=true&seed=5718919&nologo=true)\n\n*(برای ایجاد تغییرات کافیست در پیام بعدی بگویید: «تغییر بده: ...» یا «حالا ... اضافه کن»)*",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790086686351
+    },
+    {
+      "role": "user",
+      "content": "/image یک منظره رویایی و سینمایی با نورپردازی نئونی",
+      "images": [],
+      "timestamp": 1790086687275
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر تولید شده با مدل هوش مصنوعی FLUX:\n\n**پرامپت:** یک منظره رویایی و سینمایی با نورپردازی نئونی\n\n![یک منظره رویایی و سینمایی با نورپردازی نئونی](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D9%85%D9%86%D8%B8%D8%B1%D9%87%20%D8%B1%D9%88%DB%8C%D8%A7%DB%8C%DB%8C%20%D9%88%20%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C%20%D8%A8%D8%A7%20%D9%86%D9%88%D8%B1%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%DB%8C%20%D9%86%D8%A6%D9%88%D9%86%DB%8C?width=1024&height=1024&model=flux&enhance=true&seed=9272231&nologo=true)\n\n[📥 مشاهده و دانلود با کیفیت ۱۰۲۴x۱۰۲۴](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D9%85%D9%86%D8%B8%D8%B1%D9%87%20%D8%B1%D9%88%DB%8C%D8%A7%DB%8C%DB%8C%20%D9%88%20%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C%20%D8%A8%D8%A7%20%D9%86%D9%88%D8%B1%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%DB%8C%20%D9%86%D8%A6%D9%88%D9%86%DB%8C?width=1024&height=1024&model=flux&enhance=true&seed=9272231&nologo=true)\n\n*(برای ایجاد تغییرات کافیست در پیام بعدی بگویید: «تغییر بده: ...» یا «حالا ... اضافه کن»)*",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790086687279
+    }
+  ],
+  "created_at": 1790082874.3588989,
+  "updated_at": 1790086687.2937727
+}

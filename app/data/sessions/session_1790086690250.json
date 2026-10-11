@@ -1,0 +1,51 @@
+{
+  "id": "session_1790086690250",
+  "title": "/image یک منظره رویایی و سینمایی با نورپ...",
+  "model": "gemini-3.6-flash",
+  "messages": [
+    {
+      "role": "user",
+      "content": "/image یک منظره رویایی و سینمایی با نورپردازی نئونی",
+      "images": [],
+      "timestamp": 1790086694099
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر تولید شده با مدل هوش مصنوعی FLUX:\n\n**پرامپت:** یک منظره رویایی و سینمایی با نورپردازی نئونی\n\n![یک منظره رویایی و سینمایی با نورپردازی نئونی](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D9%85%D9%86%D8%B8%D8%B1%D9%87%20%D8%B1%D9%88%DB%8C%D8%A7%DB%8C%DB%8C%20%D9%88%20%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C%20%D8%A8%D8%A7%20%D9%86%D9%88%D8%B1%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%DB%8C%20%D9%86%D8%A6%D9%88%D9%86%DB%8C?width=1024&height=1024&model=flux&enhance=true&seed=2773020&nologo=true)\n\n[📥 مشاهده و دانلود با کیفیت ۱۰۲۴x۱۰۲۴](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D9%85%D9%86%D8%B8%D8%B1%D9%87%20%D8%B1%D9%88%DB%8C%D8%A7%DB%8C%DB%8C%20%D9%88%20%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C%20%D8%A8%D8%A7%20%D9%86%D9%88%D8%B1%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%DB%8C%20%D9%86%D8%A6%D9%88%D9%86%DB%8C?width=1024&height=1024&model=flux&enhance=true&seed=2773020&nologo=true)\n\n*(برای ایجاد تغییرات کافیست در پیام بعدی بگویید: «تغییر بده: ...» یا «حالا ... اضافه کن»)*",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790086694102
+    },
+    {
+      "role": "user",
+      "content": "/gemini_image مردی در تهران",
+      "images": [],
+      "timestamp": 1790086724696
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر تولید شده با مدل هوش مصنوعی Google Gemini Imagen:\n\n**پرامپت:** مردی در تهران\n\n![مردی در تهران](https://image.pollinations.ai/prompt/%D9%85%D8%B1%D8%AF%DB%8C%20%D8%AF%D8%B1%20%D8%AA%D9%87%D8%B1%D8%A7%D9%86?width=1024&height=1024&model=gemini&enhance=true&seed=6430844&nologo=true)\n\n[📥 مشاهده و دانلود با کیفیت ۱۰۲۴x۱۰۲۴](https://image.pollinations.ai/prompt/%D9%85%D8%B1%D8%AF%DB%8C%20%D8%AF%D8%B1%20%D8%AA%D9%87%D8%B1%D8%A7%D9%86?width=1024&height=1024&model=gemini&enhance=true&seed=6430844&nologo=true)\n\n*(برای ایجاد تغییرات کافیست در پیام بعدی بگویید: «تغییر بده: ...» یا «حالا ... اضافه کن»)*",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790086724700
+    },
+    {
+      "role": "user",
+      "content": "تغییر بده:",
+      "images": [],
+      "timestamp": 1790086791147
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر به‌روزرسانی شده در ادامه گفتگو (FLUX):\n\n**تغییرات درخواستی:** تغییر بده:\n\n**پرامپت ترکیبی کامل:** مردی در تهران, modified with: تغییر بده:\n\n![مردی در تهران, modified with: تغییر بده:](https://image.pollinations.ai/prompt/%D9%85%D8%B1%D8%AF%DB%8C%20%D8%AF%D8%B1%20%D8%AA%D9%87%D8%B1%D8%A7%D9%86%2C%20modified%20with%3A%20%D8%AA%D8%BA%DB%8C%DB%8C%D8%B1%20%D8%A8%D8%AF%D9%87%3A?width=1024&height=1024&model=flux&enhance=true&seed=8706437&nologo=true)\n\n[📥 مشاهده و دانلود با کیفیت ۱۰۲۴x۱۰۲۴](https://image.pollinations.ai/prompt/%D9%85%D8%B1%D8%AF%DB%8C%20%D8%AF%D8%B1%20%D8%AA%D9%87%D8%B1%D8%A7%D9%86%2C%20modified%20with%3A%20%D8%AA%D8%BA%DB%8C%DB%8C%D8%B1%20%D8%A8%D8%AF%D9%87%3A?width=1024&height=1024&model=flux&enhance=true&seed=8706437&nologo=true)\n\n*(می‌توانید در ادامه گفتگو تغییرات دیگری مانند افزودن عناصر جدید، تغییر رنگ یا سبک را نیز درخواست نمایید)*",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790086791151
+    }
+  ],
+  "created_at": 1790086694.1142802,
+  "updated_at": 1790086791.1870043
+}

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OmniLLM Hub - پلتفرم چت هوش مصنوعی جامع</title>
+  
+  <!-- Google Fonts: Vazirmatn & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Vazirmatn', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+            },
+            surface: {
+              900: '#090d16',
+              800: '#0f172a',
+              700: '#1e293b',
+              600: '#334155',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Marked.js for Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Highlight.js for Code Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <!-- KaTeX for Math Equations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- DOMPurify for Security -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.9/purify.min.js"></script>
+
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="bg-surface-900 text-slate-100 h-screen flex overflow-hidden font-sans antialiased selection:bg-teal-500 selection:text-white">
+
+  <!-- Sidebar Overlay for Mobile -->
+  <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed md:static inset-y-0 right-0 z-40 w-72 bg-surface-800 border-l border-slate-700/60 flex flex-col transition-transform duration-300 translate-x-full md:translate-x-0">
+    <!-- Sidebar Header -->
+    <div class="p-4 border-b border-slate-700/60 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-teal-500 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-teal-500/20 font-bold">
+          <i data-lucide="bot" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="font-bold text-sm tracking-tight text-white flex items-center gap-1.5">
+            OmniLLM Hub
+            <span class="text-[10px] bg-teal-500/10 text-teal-400 px-1.5 py-0.5 rounded border border-teal-500/30">Pro</span>
+          </h1>
+          <p class="text-[11px] text-slate-400">سرویس همه‌کاره هوش مصنوعی</p>
+        </div>
+      </div>
+      <button id="close-sidebar-btn" class="md:hidden text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- New Chat Action -->
+    <div class="p-3 pb-1">
+      <button id="new-chat-btn" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white font-medium py-2.5 px-4 rounded-xl shadow-lg shadow-teal-600/20 transition-all duration-150 active:scale-95 text-sm">
+        <img src="/static/img/new_chat.png" onerror="this.onerror=null; this.src='img/new_chat.png';" alt="گفتگوی جدید" class="w-5 h-5 object-contain drop-shadow" />
+        <span>گفتگوی جدید</span>
+      </button>
+    </div>
+
+    <!-- Nano Banana Studio Action -->
+    <div class="px-3 pb-2">
+      <a href="/banana" target="_blank" class="w-full flex items-center justify-between gap-2 bg-gradient-to-r from-amber-500/20 to-yellow-500/10 hover:from-amber-500/30 hover:to-yellow-500/20 border border-amber-500/30 text-amber-300 font-medium py-2 px-3 rounded-xl transition text-xs shadow-sm">
+        <span class="flex items-center gap-2">
+          <span>🍌</span>
+          <span>استودیوی Nano Banana</span>
+        </span>
+        <span class="text-[9px] bg-amber-400/30 text-amber-200 px-1.5 py-0.5 rounded font-bold">Puter AI</span>
+      </a>
+    </div>
+
+    <!-- Sessions History List -->
+    <div class="flex-1 overflow-y-auto px-2 py-2 space-y-1 custom-scroll" id="sessions-list">
+      <div class="px-3 py-1.5 text-xs font-semibold text-slate-400">تاریخچه گفتگوها</div>
+      <!-- Dynamically filled by JavaScript -->
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="p-3 border-t border-slate-700/60 flex items-center justify-between bg-surface-800/80">
+      <button id="open-settings-btn" class="flex items-center gap-2 text-slate-300 hover:text-white text-xs px-2.5 py-1.5 rounded-lg hover:bg-slate-700/50 transition">
+        <i data-lucide="settings" class="w-4 h-4 text-teal-400"></i>
+        <span>تنظیمات و کلیدها</span>
+      </button>
+      <button id="clear-all-sessions-btn" title="حذف تمام تاریخچه" class="text-slate-400 hover:text-rose-400 p-1.5 rounded-lg hover:bg-slate-700/50 transition">
+        <i data-lucide="trash-2" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Chat Container -->
+  <main class="flex-1 flex flex-col h-screen min-w-0 bg-surface-900 relative">
+    
+    <!-- Top Header / Model Bar -->
+    <header class="h-16 border-b border-slate-800/80 px-4 flex items-center justify-between bg-surface-900/80 backdrop-blur-md z-20">
+      <div class="flex items-center gap-3 min-w-0">
+        <button id="toggle-sidebar-btn" class="md:hidden text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Model Selector Dropdown -->
+        <div class="relative" id="model-dropdown-container">
+          <button id="model-select-btn" class="flex items-center gap-2 bg-slate-800/90 hover:bg-slate-800 text-slate-100 px-3.5 py-1.5 rounded-xl border border-slate-700/70 text-sm font-medium transition shadow-sm">
+            <span id="selected-model-icon" class="text-teal-400"><i data-lucide="zap" class="w-4 h-4"></i></span>
+            <span id="selected-model-name" class="truncate max-w-[150px] sm:max-w-[220px]">Google Gemini (واحد و پرسرعت)</span>
+            <span id="selected-model-badge" class="hidden sm:inline-block text-[10px] bg-teal-500/20 text-teal-300 px-1.5 py-0.5 rounded border border-teal-500/30">گوگل جمینای</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400"></i>
+          </button>
+
+          <!-- Model Menu Menu Box -->
+          <div id="model-menu" class="absolute top-full right-0 mt-2 w-80 max-h-96 overflow-y-auto bg-surface-800 border border-slate-700 rounded-2xl shadow-2xl p-2 z-50 hidden custom-scroll">
+            <div class="text-[11px] font-semibold text-slate-400 px-3 py-1.5 border-b border-slate-700/50">مدل‌های قابل استفاده</div>
+            <div id="models-list-items" class="space-y-1 mt-1">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header Tools & Indicators -->
+      <div class="flex items-center gap-2">
+        <!-- Live Web Search Indicator Badge -->
+        <button id="header-web-search-toggle" class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border transition duration-150 border-slate-700 bg-slate-800/60 text-slate-400 hover:text-slate-200">
+          <i data-lucide="globe" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">وب‌سرچ زنده:</span>
+          <span id="search-status-text" class="font-bold text-slate-400">خاموش</span>
+        </button>
+
+        <!-- Artifacts Panel Toggle (if any artifact present) -->
+        <button id="toggle-artifacts-btn" class="hidden flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border border-indigo-500/40 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20 transition">
+          <i data-lucide="code-2" class="w-4 h-4"></i>
+          <span>نمایش کد و پیش‌نمایش</span>
+        </button>
+
+        <!-- Nano Banana Studio Link Button -->
+        <a href="/banana" target="_blank" class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border border-amber-500/40 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 transition font-medium">
+          <span>🍌</span>
+          <span class="hidden sm:inline">استودیوی Nano Banana</span>
+        </a>
+
+        <!-- Export Chat -->
+        <button id="export-chat-btn" title="خروجی متن گفتگو" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition">
+          <i data-lucide="download" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Chat Messages Scroll Area -->
+    <div id="messages-container" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 custom-scroll">
+      <!-- Welcome Hero (shown when chat is empty) -->
+      <div id="welcome-hero" class="max-w-2xl mx-auto my-12 text-center space-y-6">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-teal-500 to-indigo-600 flex items-center justify-center mx-auto text-white shadow-xl shadow-teal-500/25">
+          <i data-lucide="sparkles" class="w-8 h-8"></i>
+        </div>
+        <div class="space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">چت هوش مصنوعی همه‌کاره</h2>
+          <p class="text-slate-400 text-sm sm:text-base max-w-lg mx-auto">
+            متصل به مدل‌های پرچمدار جهان (DeepSeek R1, GPT-4o, Grok-2, GLM-4V, Claude, Gemini) با قابلیت جستجوی زنده وب و تحلیل تصویر.
+          </p>
+        </div>
+
+        <!-- Capability Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-right">
+          <div class="p-3.5 bg-surface-800/60 border border-slate-700/50 rounded-xl hover:border-teal-500/40 transition group cursor-pointer quick-prompt" data-prompt="یک راه حل گام به گام و تحلیلی برای حل مسئله زیر ارائه بده:">
+            <div class="flex items-center gap-2 text-teal-400 mb-1 font-semibold text-xs">
+              <i data-lucide="brain" class="w-4 h-4"></i>
+              <span>استدلال عمیق</span>
+            </div>
+            <p class="text-xs text-slate-400 group-hover:text-slate-300">نمایش فرآیند فکر و تفکر منطقی گام به گام مدل</p>
+          </div>
+
+          <div class="p-3.5 bg-surface-800/60 border border-slate-700/50 rounded-xl hover:border-teal-500/40 transition group cursor-pointer quick-prompt" data-prompt="جدیدترین اخبار و پیشرفت‌های هوش مصنوعی در ماه جاری را جستجو کن و با منبع بگو:">
+            <div class="flex items-center gap-2 text-indigo-400 mb-1 font-semibold text-xs">
+              <i data-lucide="globe" class="w-4 h-4"></i>
+              <span>جستجوی وب</span>
+            </div>
+            <p class="text-xs text-slate-400 group-hover:text-slate-300">دسترسی به اطلاعات لحظه‌ای و ارجاع‌دهی منابع</p>
+          </div>
+
+          <div class="p-3.5 bg-surface-800/60 border border-slate-700/50 rounded-xl hover:border-teal-500/40 transition group cursor-pointer quick-prompt" data-prompt="یک کامپوننت کامل و مدرن ماشین حساب در HTML و Tailwind بنویس:">
+            <div class="flex items-center gap-2 text-emerald-400 mb-1 font-semibold text-xs">
+              <i data-lucide="code" class="w-4 h-4"></i>
+              <span>آرتیفکت و کد</span>
+            </div>
+            <p class="text-xs text-slate-400 group-hover:text-slate-300">پیش‌نمایش تعاملی و اجرای زنده کدهای تولیدشده</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Stream (Appended dynamically) -->
+      <div id="messages-list" class="max-w-3xl mx-auto space-y-6"></div>
+    </div>
+
+    <!-- Floating Live Status / Stop Button -->
+    <div id="streaming-status-bar" class="hidden absolute bottom-28 inset-x-0 mx-auto w-fit z-20">
+      <div class="flex items-center gap-3 bg-surface-800/95 border border-slate-700/80 shadow-2xl px-4 py-2 rounded-full backdrop-blur-md">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500"></span>
+        </span>
+        <span id="streaming-status-text" class="text-xs text-slate-300">هوش مصنوعی در حال پاسخگویی است...</span>
+        <button id="stop-generation-btn" class="flex items-center gap-1 text-xs bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 px-2.5 py-1 rounded-full border border-rose-500/30 transition">
+          <i data-lucide="square" class="w-3 h-3 fill-current"></i>
+          <span>توقف</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Input Dock -->
+    <div class="p-4 border-t border-slate-800/80 bg-surface-900/90 backdrop-blur-md">
+      <div class="max-w-3xl mx-auto space-y-2">
+        
+        <!-- Attached Images Preview Bar -->
+        <div id="image-previews-container" class="hidden flex items-center gap-2 overflow-x-auto py-1 px-1">
+          <!-- Image thumbnails inserted dynamically -->
+        </div>
+
+        <!-- Main Input Form Container -->
+        <div class="relative bg-surface-800/90 border border-slate-700/80 rounded-2xl shadow-xl focus-within:border-teal-500/60 focus-within:ring-2 focus-within:ring-teal-500/20 transition duration-150">
+          
+          <textarea
+            id="chat-input"
+            rows="1"
+            placeholder="پیام خود را بنویسید... (یا تصویر را درگ کنید / پیست کنید)"
+            class="w-full bg-transparent text-slate-100 placeholder-slate-400 px-4 pt-3.5 pb-12 focus:outline-none resize-none max-h-48 text-sm leading-relaxed"
+          ></textarea>
+
+          <!-- Input Action Buttons Toolbar -->
+          <div class="absolute bottom-2.5 inset-x-3 flex items-center justify-between pointer-events-none">
+            
+            <div class="flex items-center gap-1 pointer-events-auto">
+              <!-- Upload Image Button -->
+              <label for="image-upload-input" class="p-1.5 text-slate-400 hover:text-teal-400 hover:bg-slate-700/60 rounded-xl cursor-pointer transition" title="آپلود تصویر جهت تحلیل">
+                <i data-lucide="image" class="w-4 h-4"></i>
+              </label>
+              <input type="file" id="image-upload-input" accept="image/*" multiple class="hidden" />
+
+              <!-- Web Search Toggle Button in input -->
+              <button id="input-web-search-btn" class="flex items-center gap-1 px-2.5 py-1 text-xs rounded-xl border border-slate-700/60 text-slate-400 hover:text-slate-200 hover:bg-slate-700/40 transition" title="روشن/خاموش کردن جستجوی زنده در وب">
+                <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                <span class="hidden sm:inline">سرچ وب</span>
+              </button>
+
+              <!-- Voice Input (Microphone / Speech-to-Text) Button -->
+              <button id="voice-record-btn" type="button" class="flex items-center gap-1 px-2.5 py-1 text-xs rounded-xl border border-slate-700/60 text-slate-400 hover:text-rose-400 hover:bg-slate-700/40 transition" title="صحبت با میکروفون (تبدیل صدا به متن)">
+                <i data-lucide="mic" class="w-3.5 h-3.5"></i>
+                <span id="voice-btn-text" class="hidden sm:inline">ویس</span>
+              </button>
+
+              <!-- AI Image Generation Button -->
+              <button id="image-gen-btn" type="button" class="flex items-center gap-1 px-2.5 py-1 text-xs rounded-xl border border-fuchsia-500/40 text-fuchsia-300 hover:bg-fuchsia-500/20 transition" title="تولید عکس با هوش مصنوعی (Google Gemini)">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-fuchsia-400"></i>
+                <span class="hidden sm:inline">تولید عکس</span>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-2 pointer-events-auto">
+              <!-- Send Button -->
+              <button id="send-message-btn" class="w-8 h-8 rounded-xl bg-teal-500 hover:bg-teal-400 text-white flex items-center justify-center shadow-lg shadow-teal-500/30 transition duration-150 active:scale-95 disabled:opacity-40 disabled:pointer-events-none">
+                <i data-lucide="arrow-up" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] text-slate-400 px-2">
+          <span>دکمه Enter برای ارسال، Shift + Enter برای خط جدید</span>
+          <span class="flex items-center gap-1">
+            <i data-lucide="shield-check" class="w-3 h-3 text-teal-400"></i>
+            <span>پشتیبانی مستقیم از تصویر و تفکر عمیق</span>
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Side Drawer for Live Artifacts / Sandbox Preview -->
+  <aside id="artifacts-drawer" class="fixed inset-y-0 left-0 w-full sm:w-[500px] lg:w-[600px] bg-surface-800 border-r border-slate-700/80 shadow-2xl z-50 flex flex-col transition-transform duration-300 -translate-x-full">
+    <div class="h-16 border-b border-slate-700/80 px-4 flex items-center justify-between bg-surface-800">
+      <div class="flex items-center gap-2 text-indigo-400 font-semibold text-sm">
+        <i data-lucide="code-2" class="w-5 h-5"></i>
+        <span>پیش‌نمایش آرتیفکت تعاملی</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="copy-artifact-btn" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-700 text-xs flex items-center gap-1">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span>کپی کد</span>
+        </button>
+        <button id="close-artifacts-btn" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- View Switcher Tabs -->
+    <div class="flex border-b border-slate-700/60 bg-surface-900/50 text-xs">
+      <button id="tab-preview" class="flex-1 py-2 text-center font-medium border-b-2 border-indigo-500 text-indigo-400">پیش‌نمایش زنده</button>
+      <button id="tab-code" class="flex-1 py-2 text-center font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200">سورس کد</button>
+    </div>
+
+    <!-- Artifact Content -->
+    <div class="flex-1 overflow-hidden relative">
+      <iframe id="artifact-sandbox-iframe" sandbox="allow-scripts allow-modals" class="w-full h-full border-none bg-white"></iframe>
+      <pre id="artifact-code-view" class="w-full h-full hidden overflow-auto p-4 font-mono text-xs text-slate-200 bg-surface-900 custom-scroll"><code></code></pre>
+    </div>
+  </aside>
+
+  <!-- Settings Modal (BYOK & Configuration) -->
+  <div id="settings-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-surface-800 border border-slate-700 w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      
+      <div class="p-5 border-b border-slate-700/70 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="key" class="w-5 h-5 text-teal-400"></i>
+          <h3 class="font-bold text-base text-white">تنظیمات و کلیدهای API</h3>
+        </div>
+        <button id="close-settings-btn" class="text-slate-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-4 custom-scroll text-sm">
+        <p class="text-xs text-slate-400">
+          می‌توانید کلیدهای اختصاصی خود را در مرورگر ذخیره کنید یا آنها را در فایل <code class="bg-slate-900 px-1.5 py-0.5 rounded text-teal-300">.env</code> سرور قرار دهید:
+        </p>
+
+        <!-- Provider API Keys Inputs -->
+        <div class="space-y-3">
+          <div class="p-3 bg-teal-500/10 border border-teal-500/30 rounded-xl text-xs text-slate-300 space-y-2">
+            <div class="flex items-center gap-1.5 font-bold text-teal-400">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              <span>روش‌های دریافت بینایی ماشین واقعی و بسیار دقیق (Vision):</span>
+            </div>
+            <p>
+              🥇 <strong class="text-white">Google Gemini 2.0 Flash (دقیق‌ترین در دنیا):</strong> خواندن متون ریز، دست‌خط، کد و نمودارها با دقت ۱۰۰٪. دریافت کلید رایگان دائمی ظرف ۳۰ ثانیه از <a href="https://aistudio.google.com" target="_blank" class="text-teal-400 underline font-semibold">Google AI Studio</a>.
+            </p>
+            <p>
+              🥈 <strong class="text-white">Qwen 2.5 VL 72B در OpenRouter (کاملاً رایگان):</strong> بهترین مدل متن‌باز بینایی ماشین. کلید رایگان بدون نیاز به کارت از <a href="https://openrouter.ai/keys" target="_blank" class="text-teal-400 underline font-semibold">OpenRouter Keys</a>.
+            </p>
+            <p>
+              🥉 <strong class="text-white">Ollama آفلاین (روی کارت گرافیک شما RTX 3070):</strong> مدل Llama 3.2 Vision به صورت ۱۰۰٪ آفلاین و بدون نیاز به اینترنت یا کلید.
+            </p>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">Zhipu AI GLM API Key <span class="text-[10px] text-teal-400 font-bold">(GLM-4V-Flash رایگان با Vision)</span></label>
+              <a href="https://open.bigmodel.cn/usercenter/apikeys" target="_blank" class="text-[11px] text-teal-400 hover:underline">دریافت رایگان ↗</a>
+            </div>
+            <input type="password" id="key-glm" placeholder="xxxxxxxx.yyyyyyyy..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500 font-mono">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">Google Gemini API Key <span class="text-[10px] text-teal-400 font-bold">(رایگان - Gemini 2.0 Flash با Vision)</span></label>
+              <a href="https://aistudio.google.com" target="_blank" class="text-[11px] text-teal-400 hover:underline">دریافت رایگان ↗</a>
+            </div>
+            <input type="password" id="key-gemini" placeholder="AIzaSy..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500 font-mono">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">DeepSeek API Key (R1 Reasoner / V3)</label>
+              <a href="https://platform.deepseek.com/api_keys" target="_blank" class="text-[11px] text-blue-400 hover:underline">دریافت کلید DeepSeek ↗</a>
+            </div>
+            <input type="password" id="key-deepseek" placeholder="sk-..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500 font-mono">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">OpenAI API Key (GPT-4o / o1)</label>
+              <a href="https://platform.openai.com/api-keys" target="_blank" class="text-[11px] text-slate-400 hover:underline">OpenAI Platform ↗</a>
+            </div>
+            <input type="password" id="key-openai" placeholder="sk-..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500 font-mono">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">Anthropic Claude API Key (Claude 3.5 Sonnet)</label>
+              <a href="https://console.anthropic.com" target="_blank" class="text-[11px] text-slate-400 hover:underline">Anthropic Console ↗</a>
+            </div>
+            <input type="password" id="key-claude" placeholder="sk-ant-..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500 font-mono">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">OpenRouter API Key (بیش از ۱۰۰ مدل)</label>
+              <a href="https://openrouter.ai/keys" target="_blank" class="text-[11px] text-slate-400 hover:underline">OpenRouter Keys ↗</a>
+            </div>
+            <input type="password" id="key-openrouter" placeholder="sk-or-..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500 font-mono">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">xAI Grok API Key</label>
+              <a href="https://console.x.ai" target="_blank" class="text-[11px] text-slate-400 hover:underline">xAI Console ↗</a>
+            </div>
+            <input type="password" id="key-grok" placeholder="xai-..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500 font-mono">
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">Puter Auth Token <span class="text-[10px] text-amber-400 font-bold">(Google Nano Banana رایگان)</span></label>
+              <a href="https://puter.com" target="_blank" class="text-[11px] text-amber-400 hover:underline">داشبورد Puter ↗</a>
+            </div>
+            <input type="password" id="key-puter" placeholder="eyJhbGci..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">CodeCraft API Key <span class="text-[10px] text-teal-400 font-bold">(۳۳ مدل نسل جدید: GPT-5.6, Claude Opus, DeepSeek V4)</span></label>
+              <a href="https://codecraftapi.com" target="_blank" class="text-[11px] text-teal-400 hover:underline">پنل CodeCraft ↗</a>
+            </div>
+            <input type="password" id="key-codecraft" placeholder="cc_..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-400 font-mono">
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">Agnes AI API Key <span class="text-[10px] text-emerald-400 font-bold">(استودیو نانو بنانا، عکس، ویدیو، استدلال)</span></label>
+              <a href="https://agnes-ai.com" target="_blank" class="text-[11px] text-emerald-400 hover:underline">پنل Agnes ↗</a>
+            </div>
+            <input type="password" id="key-agnes" placeholder="sk-..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-400 font-mono">
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-medium text-slate-300">Atria ASI API Key <span class="text-[10px] text-amber-400 font-bold">(Atria Dawn Preview - استدلال 256K)</span></label>
+              <a href="https://api.atria-asi.ai/docs" target="_blank" class="text-[11px] text-amber-400 hover:underline">مستندات Atria ↗</a>
+            </div>
+            <input type="password" id="key-atria" placeholder="atr_..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Tavily Web Search Key (اختیاری)</label>
+            <input type="password" id="key-tavily" placeholder="tvly-..." class="w-full bg-surface-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500 font-mono">
+          </div>
+        </div>
+
+        <!-- Temperature Slider -->
+        <div class="pt-2 border-t border-slate-700/60">
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-xs font-medium text-slate-300">خلاقیت پاسخ (Temperature)</label>
+            <span id="temp-val-display" class="text-xs text-teal-400 font-mono">0.7</span>
+          </div>
+          <input type="range" id="temp-slider" min="0.0" max="1.5" step="0.1" value="0.7" class="w-full accent-teal-500">
+        </div>
+
+        <!-- System Prompt -->
+        <div class="pt-2 border-t border-slate-700/60">
+          <label class="block text-xs font-medium text-slate-300 mb-1">دستور پایه سیستم (System Prompt)</label>
+          <textarea id="system-prompt-input" rows="2" placeholder="پیش‌فرض هوشمند..." class="w-full bg-surface-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-teal-500"></textarea>
+        </div>
+
+      </div>
+
+      <div class="p-4 border-t border-slate-700/70 bg-surface-900/50 flex justify-end gap-2">
+        <button id="save-settings-btn" class="bg-teal-500 hover:bg-teal-400 text-white text-xs font-semibold px-4 py-2 rounded-xl transition">
+          ذخیره تنظیمات
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Image Lightbox Modal -->
+  <div id="image-lightbox-modal" class="hidden fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4">
+    <button id="close-lightbox-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800/80 p-2.5 rounded-full hover:bg-slate-700 transition">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    <div class="max-w-4xl max-h-[90vh] flex flex-col items-center">
+      <img id="lightbox-img" src="" class="max-h-[80vh] max-w-full rounded-2xl shadow-2xl object-contain border border-slate-700/80" />
+      <div class="mt-4 flex items-center gap-3">
+        <a id="lightbox-download-btn" href="" target="_blank" download class="flex items-center gap-1.5 px-4 py-2 bg-teal-500 hover:bg-teal-400 text-white rounded-xl text-xs font-semibold shadow-lg transition">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>دانلود با کیفیت اصلی ۱۰۲۴x۱۰۲۴</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/artifacts.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

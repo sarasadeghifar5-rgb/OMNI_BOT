@@ -1,0 +1,99 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29" />
+      <stop offset="50%" style="stop-color:#302b63" />
+      <stop offset="100%" style="stop-color:#24243e" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700" />
+      <stop offset="50%" style="stop-color:#FDB931" />
+      <stop offset="100%" style="stop-color:#9E7112" />
+    </linearGradient>
+    <linearGradient id="neonPink" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff00ff" />
+      <stop offset="100%" style="stop-color:#7000ff" />
+    </linearGradient>
+    <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00f2ff" />
+      <stop offset="100%" style="stop-color:#0062ff" />
+    </linearGradient>
+    <radialGradient id="furHighlight" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff; stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d1d1d1; stop-opacity:1" />
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="softShadow">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#bgGradient)" />
+  
+  <!-- Abstract Decorative Elements -->
+  <circle cx="200" cy="200" r="150" fill="url(#neonPink)" opacity="0.1" filter="url(#glow)" />
+  <circle cx="824" cy="824" r="200" fill="url(#neonCyan)" opacity="0.1" filter="url(#glow)" />
+  
+  <!-- Persian Cat Body (Chest/Shoulders) -->
+  <path d="M312 1024 Q512 700 712 1024" fill="url(#furHighlight)" filter="url(#softShadow)" />
+  
+  <!-- Persian Cat Head (Fluffy) -->
+  <path d="M512 300 
+           C350 300 250 400 250 550 
+           C250 750 400 850 512 850 
+           C624 850 774 750 774 550 
+           C774 400 674 300 512 300" 
+        fill="url(#furHighlight)" filter="url(#softShadow)" />
+  
+  <!-- Fluffy Ears -->
+  <path d="M300 420 L220 280 Q280 300 350 380 Z" fill="#e0e0e0" />
+  <path d="M724 420 L804 280 Q744 300 674 380 Z" fill="#e0e0e0" />
+  
+  <!-- Face Details (Nose/Mouth) -->
+  <path d="M492 720 Q512 740 532 720" stroke="#ff9999" stroke-width="4" fill="none" stroke-linecap="round" />
+  <path d="M512 700 L512 715" stroke="#ff9999" stroke-width="2" />
+
+  <!-- Neon Sunglasses -->
+  <g filter="url(#glow)">
+    <!-- Frames -->
+    <path d="M280 520 L744 520 L730 620 Q512 650 294 620 Z" fill="rgba(20, 20, 20, 0.85)" stroke="url(#neonPink)" stroke-width="8" />
+    <!-- Lenses Glow -->
+    <rect x="310" y="540" width="180" height="60" rx="10" fill="url(#neonPink)" opacity="0.3" />
+    <rect x="534" y="540" width="180" height="60" rx="10" fill="url(#neonCyan)" opacity="0.3" />
+    <!-- Bridge -->
+    <path d="M490 540 Q512 530 534 540" stroke="url(#neonPink)" stroke-width="6" fill="none" />
+  </g>
+
+  <!-- Majestic Golden Crown -->
+  <g transform="translate(362, 120)" filter="url(#softShadow)">
+    <path d="M0 150 L30 50 L75 120 L150 0 L225 120 L270 50 L300 150 Z" fill="url(#goldGradient)" />
+    <rect y="150" width="300" height="40" rx="5" fill="url(#goldGradient)" />
+    <!-- Jewels -->
+    <circle cx="150" cy="80" r="15" fill="#ff0055" filter="url(#glow)" />
+    <circle cx="50" cy="150" r="8" fill="#00ffcc" />
+    <circle cx="150" cy="150" r="8" fill="#00ffcc" />
+    <circle cx="250" cy="150" r="8" fill="#00ffcc" />
+  </g>
+
+  <!-- Fur Texture Accents -->
+  <g opacity="0.4" stroke="#ffffff" stroke-width="2">
+    <path d="M300 500 Q280 520 260 500" fill="none" />
+    <path d="M724 500 Q744 520 764 500" fill="none" />
+    <path d="M400 800 Q512 830 624 800" fill="none" />
+  </g>
+
+  <!-- Whisker Glows -->
+  <g stroke="url(#neonCyan)" stroke-width="1" opacity="0.6">
+    <line x1="280" y1="680" x2="150" y2="700" />
+    <line x1="280" y1="700" x2="160" y2="740" />
+    <line x1="744" y1="680" x2="874" y2="700" />
+    <line x1="744" y1="700" x2="864" y2="740" />
+  </g>
+
+  <!-- Final Lighting Overlay -->
+  <rect width="1024" height="1024" fill="url(#neonCyan)" opacity="0.03" style="mix-blend-mode: overlay;" />
+</svg>

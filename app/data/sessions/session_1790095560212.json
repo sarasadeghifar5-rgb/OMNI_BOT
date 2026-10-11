@@ -1,0 +1,25 @@
+{
+  "id": "session_1790095560212",
+  "title": "سلام",
+  "model": "gemini",
+  "messages": [
+    {
+      "role": "user",
+      "content": "سلام",
+      "images": [],
+      "timestamp": 1790095563545
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! روزتون بخیر. چطور می‌توانم کمکتان کنم؟",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini",
+      "timestamp": 1790095563550,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790095591.3612928,
+  "updated_at": 1790095591.3612928
+}

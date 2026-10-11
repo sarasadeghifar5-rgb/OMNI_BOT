@@ -1,0 +1,25 @@
+{
+  "id": "session_1790093316705",
+  "title": "عکس مردم در تهران رو بساز",
+  "model": "gemini",
+  "messages": [
+    {
+      "role": "user",
+      "content": "عکس مردم در تهران رو بساز",
+      "images": [],
+      "timestamp": 1790093322760
+    },
+    {
+      "role": "assistant",
+      "content": "من به عنوان یک مدل متنی، امکان **تولید مستقیم تصویر** را ندارم. اما می‌توانم به شما کمک کنم! \n\nاگر از ابزارهای هوش مصنوعی تولید تصویر (مانند **Midjourney**، **DALL-E 3** یا **Leonardo.Ai**) استفاده می‌کنید، می‌توانید از پرامپت (توصیف) زیر که به انگلیسی تنظیم شده است استفاده کنید تا بهترین نتیجه را بگیرید:\n\n### پرامپت پیشنهادی برای ابزارهای تولید تصویر:\n\n> **English Prompt:**\n> A realistic, high-detail photograph of diverse people walking and socializing on a bustling street in Tehran, such as Valiasr Street. Beautiful tall plane trees (Chenar) framing the sidewalk, warm natural daylight, a blend of modern",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini",
+      "timestamp": 1790093322765,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790093361.0681212,
+  "updated_at": 1790093361.0681212
+}

@@ -1,0 +1,23 @@
+{
+  "id": "session_1790031404763",
+  "title": "اسمت چیه",
+  "model": "gpt-4o",
+  "messages": [
+    {
+      "role": "user",
+      "content": "اسمت چیه",
+      "images": [],
+      "timestamp": 1790031410491
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! من **OmniLLM** هستم، یک دستیار هوش مصنوعی با دانش گسترده در حوزه‌های مختلف. اگر سؤال یا کمکی نیاز دارید، حتماً بپرسید!",
+      "thinking": "The user asks in Persian: \"اسمت چیه\" meaning \"What's your name?\" Should respond politely. Provide name: OmniLLM.",
+      "sources": [],
+      "model": "gpt-4o",
+      "timestamp": 1790031410495
+    }
+  ],
+  "created_at": 1790031416.9921505,
+  "updated_at": 1790031416.9921505
+}

@@ -1,0 +1,25 @@
+{
+  "id": "session_1790093366016",
+  "title": "های",
+  "model": "gemini",
+  "messages": [
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790093369323
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! وقت بخیر. من گوگل جمینای هستم. چطور می‌توانم کمکتان کنم؟",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini",
+      "timestamp": 1790093369328,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790093416.2789884,
+  "updated_at": 1790093416.2789884
+}

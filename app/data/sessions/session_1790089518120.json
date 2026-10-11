@@ -1,0 +1,25 @@
+{
+  "id": "session_1790089518120",
+  "title": "قیمت سکه امامی امروز",
+  "model": "deepseek-reasoner",
+  "messages": [
+    {
+      "role": "user",
+      "content": "قیمت سکه امامی امروز",
+      "images": [],
+      "timestamp": 1790089521704
+    },
+    {
+      "role": "assistant",
+      "content": "متأسفانه من به‌روزترین قیمت‌های بازار را در دسترس ندارم و نمی‌توانم قیمت سکه امامی امروز را به شما ارائه دهم. برای دریافت آخرین قیمت‌ها، لطفاً به وب‌سایت‌های معتبر خبری اقتصادی یا صرافی‌های آنلاین مراجعه کنید.",
+      "thinking": "The user asks in Persian: \"قیمت سکه امامی امروز\" which means \"price of the Imam coin today\". They want the current price of the Iranian Imam coin. This is a price query. The model cannot browse the internet. According to policy: The assistant should refuse to provide the price because it's real-time data. So we must refuse.",
+      "sources": [],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790089521708,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790089540.652394,
+  "updated_at": 1790089540.652394
+}

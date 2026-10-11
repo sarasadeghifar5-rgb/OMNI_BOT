@@ -1,0 +1,41 @@
+{
+  "id": "session_1790107040651",
+  "title": "سلام",
+  "model": "gemini",
+  "messages": [
+    {
+      "role": "user",
+      "content": "سلام",
+      "images": [],
+      "timestamp": 1790107047805
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! من گوگل جمینای (Google Gemini) هستم. چطور می‌توانم امروز به شما کمک کنم؟",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini",
+      "timestamp": 1790107047810,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "خوبی",
+      "images": [],
+      "timestamp": 1790107059441
+    },
+    {
+      "role": "assistant",
+      "content": "ممنون، من بسیار خوب هستم! امیدوارم شما هم عالی باشید. چه کاری از دستم برمی‌آید که امروز برایتان انجام دهم؟",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini",
+      "timestamp": 1790107059447,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790107051.616485,
+  "updated_at": 1790107063.810114
+}

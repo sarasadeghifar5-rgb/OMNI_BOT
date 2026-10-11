@@ -1,0 +1,105 @@
+{
+  "id": "session_1790088086862",
+  "title": "های",
+  "model": "gemini-3-flash-preview",
+  "messages": [
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790088089314
+    },
+    {
+      "role": "assistant",
+      "content": "\n\n> ⚠️ **خطا:** خطا از سوی سرویس‌دهنده (429): Provider returned error",
+      "thinking": "",
+      "sources": [],
+      "model": "z-ai/glm-5.2:free",
+      "timestamp": 1790088089318,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790088112837
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! امیدوارم روزت خوش باشد. چطور می‌توانم کمکتان کنم؟",
+      "thinking": "The user says \"های\" which is Persian greeting \"hi\". We should respond politely. The user might want a greeting. The instructions: respond in Persian. So greet.",
+      "sources": [],
+      "model": "glm-4-plus",
+      "timestamp": 1790088112841,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790088350670
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! من جمینای ۲.۰ فلش (Gemini 2.0 Flash) هستم که توسط گوگل توسعه یافته‌ام. چطور می‌توانم امروز به شما کمک کنم؟",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3-flash-preview",
+      "timestamp": 1790088350674,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "یک مرد عینکی با دذ تهران عکسش رو تولید کن",
+      "images": [],
+      "timestamp": 1790088383187
+    },
+    {
+      "role": "assistant",
+      "content": "متأسفانه من در حال حاضر قابلیت تولید مستقیم فایل‌های تصویری (عکس) را ندارم. من یک مدل هوش مصنوعی متنی و تحلیلی هستم.\n\nبا این حال، می‌توانم یک توصیف بسیار دقیق (Prompt) به زبان انگلیسی برای شما بنویسم تا از آن در ابزارهای تصویرساز (مانند Midjourney، DALL-E یا Adobe Firefly) استفاده کنید:\n\n**توصیف پیشنهادی (Prompt):**\n> \"A realistic, high-quality portrait of a modern Iranian man wearing stylish glasses, standing in a busy street in Tehran. In the background, the Milad Tower is visible under a soft sunset light. The urban atmosphere of Tehran with its unique architecture and city life is captured in a cinematic style, high resolution, and natural colors.\"\n\nاگر کار دیگری مثل ترجمه، حل مسئله یا نوشتن متن از دست من بر می‌آید، در خدمتم!",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3-flash-preview",
+      "timestamp": 1790088383191,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "یک مرد عینکی با دذ تهران عکسش رو تولید کن",
+      "images": [],
+      "timestamp": 1790088416494
+    },
+    {
+      "role": "assistant",
+      "content": "من جمینای ۲.۰ فلش (Gemini 2.0 Flash) از شرکت گوگل هستم. همان‌طور که پیش‌تر اشاره کردم، من یک مدل متنی هستم و در حال حاضر توانایی تولید مستقیم عکس و تصویر را ندارم.\n\nاما شما می‌توانید متن‌های انگلیسی زیر را کپی کرده و در هوش مصنوعی‌های تصویرساز (مانند Bing Image Creator که رایگان است، یا Midjourney و DALL-E) قرار دهید تا دقیقاً همین تصویر را برایتان تولید کنند:\n\n**گزینه ۱ (نمای خیابانی و واقعی با برج میلاد):**\n```text\nA photorealistic portrait of an Iranian man wearing modern glasses, standing on a street in Tehran, with the Milad Tower visible in the background under a warm sunset light, cinematic lighting, highly detailed, 8k resolution.\n```\n\n**گزینه ۲ (نمای صمیمی و کافه‌ای در تهران):**\n```text\nA cozy and realistic photo of a young man with glasses sitting in a traditional cafe in Tehran, holding a cup of tea, warm and friendly atmosphere, natural look.\n```\n\nاگر مایل باشید، می‌توانم توصیف‌های متفاوت‌تری (مثلاً با لباس سنتی، در یک محله قدیمی مانند تجریش، یا با سبک نقاشی) برایتان بنویسم.",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.5-flash",
+      "timestamp": 1790088416499,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790090890942
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.5-flash",
+      "timestamp": 1790090890948,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790088097.7454898,
+  "updated_at": 1790090936.2625926
+}

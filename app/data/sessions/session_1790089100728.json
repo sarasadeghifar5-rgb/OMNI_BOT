@@ -1,0 +1,41 @@
+{
+  "id": "session_1790089100728",
+  "title": "تولید عکس مرد در تهران",
+  "model": "gemini-3-flash-preview",
+  "messages": [
+    {
+      "role": "user",
+      "content": "تولید عکس مرد در تهران",
+      "images": [],
+      "timestamp": 1790089120554
+    },
+    {
+      "role": "assistant",
+      "content": "من Gemini 2.0 Flash هستم، یک مدل هوش مصنوعی از طرف گوگل.\n\nبرای تولید عکس یک مرد در تهران، می‌توانید از توصیف (Prompt) زیر در ابزارهای تولید تصویر استفاده کنید تا نتیجه‌ای دقیق و باکیفیت بگیرید:\n\n**متن پیشنهادی برای تولید تصویر (Prompt):**\n> \"A realistic photo of a young Iranian man walking in a busy street in Tehran. He is wearing modern casual clothes (like a stylish jacket and jeans). In the background, the iconic Azadi Tower or Milad Tower is visible under a clear blue sky. The atmosphere shows the vibrant city life of Tehran with Persian signs and yellow taxis. High resolution, cinematic lighting, 8k.\"\n\n**ویژگی‌های پیشنهادی برای تصویر:**\n*   **پوشش:** لباس‌های کژوال و مدرن متناسب با فرهنگ شهری ایران.\n*   **مکان:** می‌توانید انتخاب کنید که پس‌زمینه **برج آزادی** (نماد سنتی)، **برج میلاد** (نماد مدرن) یا **پل طبیعت** باشد.\n*   **نورپردازی:** نور طلایی هنگام غروب (Golden Hour) می‌تواند جذابیت عکس را دوچندان کند.\n\nاگر مایل هستید ویژگی‌های خاصی مثل سن مرد، محله‌ای خاص در تهران (مثلاً بازار تجریش یا خیابان ولیعصر) یا سبک هنری خاصی (مثل نقاشی یا سیاه و سفید) به تصویر اضافه شود، بفرمایید تا توصیف دقیق‌تری برایتان بنویسم.",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3-flash-preview",
+      "timestamp": 1790089120558,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "/gemini_image تولید عکس مرد در تهران",
+      "images": [],
+      "timestamp": 1790089144672
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر تولید شده با مدل هوش مصنوعی FLUX.1 (کیفیت ۱۰۲۴x۱۰۲۴):\n\n**پرامپت:** تولید عکس مرد در تهران\n\n![تولید عکس مرد در تهران](https://image.pollinations.ai/prompt/%D8%AA%D9%88%D9%84%DB%8C%D8%AF%20%D8%B9%DA%A9%D8%B3%20%D9%85%D8%B1%D8%AF%20%D8%AF%D8%B1%20%D8%AA%D9%87%D8%B1%D8%A7%D9%86?width=1024&height=1024&model=flux&enhance=true&seed=105356&nologo=true)\n\n[📥 مشاهده و دانلود با کیفیت ۱۰۲۴x۱۰۲۴](https://image.pollinations.ai/prompt/%D8%AA%D9%88%D9%84%DB%8C%D8%AF%20%D8%B9%DA%A9%D8%B3%20%D9%85%D8%B1%D8%AF%20%D8%AF%D8%B1%20%D8%AA%D9%87%D8%B1%D8%A7%D9%86?width=1024&height=1024&model=flux&enhance=true&seed=105356&nologo=true)\n\n*(برای ایجاد تغییرات کافیست در پیام بعدی بگویید: «تغییر بده: ...» یا «حالا ... اضافه کن»)*",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3-flash-preview",
+      "timestamp": 1790089144677,
+      "imageGenerating": true,
+      "imageStatusText": "🎨 در حال تصویرسازی با مدل هوش مصنوعی Google Gemini: تولید عکس مرد در تهران..."
+    }
+  ],
+  "created_at": 1790089131.1938171,
+  "updated_at": 1790089147.662556
+}

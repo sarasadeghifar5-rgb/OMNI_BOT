@@ -1,0 +1,37 @@
+{
+  "id": "session_1790086344498",
+  "title": "یک مرد در خیابان تهران",
+  "model": "gemini-3.6-flash",
+  "messages": [
+    {
+      "role": "user",
+      "content": "یک مرد در خیابان تهران",
+      "images": [],
+      "timestamp": 1790086376447
+    },
+    {
+      "role": "assistant",
+      "content": "غروب پاییزی است و نور طلایی خورشید از میان شاخه‌های چنار خیابان ولیعصر می‌تابد. مردی با کتی خاکستری و کیف‌چرمی بر د",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790086376451
+    },
+    {
+      "role": "user",
+      "content": "/gemini_image یک منظره رویایی و خیره‌کننده با سبک گوگل جمینای",
+      "images": [],
+      "timestamp": 1790086437114
+    },
+    {
+      "role": "assistant",
+      "content": "### 🎨 تصویر تولید شده با مدل هوش مصنوعی Google Gemini Imagen:\n\n**پرامپت:** یک منظره رویایی و خیره‌کننده با سبک گوگل جمینای\n\n![یک منظره رویایی و خیره‌کننده با سبک گوگل جمینای](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D9%85%D9%86%D8%B8%D8%B1%D9%87%20%D8%B1%D9%88%DB%8C%D8%A7%DB%8C%DB%8C%20%D9%88%20%D8%AE%DB%8C%D8%B1%D9%87%E2%80%8C%DA%A9%D9%86%D9%86%D8%AF%D9%87%20%D8%A8%D8%A7%20%D8%B3%D8%A8%DA%A9%20%DA%AF%D9%88%DA%AF%D9%84%20%D8%AC%D9%85%DB%8C%D9%86%D8%A7%DB%8C?width=1024&height=1024&model=gemini&enhance=true&seed=4965891&nologo=true)\n\n[📥 مشاهده و دانلود با کیفیت ۱۰۲۴x۱۰۲۴](https://image.pollinations.ai/prompt/%DB%8C%DA%A9%20%D9%85%D9%86%D8%B8%D8%B1%D9%87%20%D8%B1%D9%88%DB%8C%D8%A7%DB%8C%DB%8C%20%D9%88%20%D8%AE%DB%8C%D8%B1%D9%87%E2%80%8C%DA%A9%D9%86%D9%86%D8%AF%D9%87%20%D8%A8%D8%A7%20%D8%B3%D8%A8%DA%A9%20%DA%AF%D9%88%DA%AF%D9%84%20%D8%AC%D9%85%DB%8C%D9%86%D8%A7%DB%8C?width=1024&height=1024&model=gemini&enhance=true&seed=4965891&nologo=true)\n\n*(برای ایجاد تغییرات کافیست در پیام بعدی بگویید: «تغییر بده: ...» یا «حالا ... اضافه کن»)*",
+      "thinking": "",
+      "sources": [],
+      "model": "gemini-3.6-flash",
+      "timestamp": 1790086437118
+    }
+  ],
+  "created_at": 1790086390.4784472,
+  "updated_at": 1790086437.1382437
+}

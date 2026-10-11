@@ -1,0 +1,91 @@
+{
+  "id": "session_1790030628363",
+  "title": "های",
+  "model": "gpt-4o",
+  "messages": [
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790030630213
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! چطور می‌توانم کمکتان کنم؟",
+      "thinking": "The user wrote \"های\" which in Persian means \"hi\" or \"hello\". They might want a greeting or respond in Persian. The instruction says to answer in Persian/Farsi when responding in Persian. So respond in Persian: \"سلام! چطور می‌توانم کمکتان کنم؟\"",
+      "sources": [],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790030630216
+    },
+    {
+      "role": "user",
+      "content": "قیمت دلار بگو بهم",
+      "images": [],
+      "timestamp": 1790030653518
+    },
+    {
+      "role": "assistant",
+      "content": "## قیمت دلار آمریکا در روز ۳۰ شهرایُور ۱۴۰۵ (۳۰ سپتامبر ۲۰۲۵)\n\n| نوع نرخ | مقدار (ریال) | مقدار (تومان) | توضیحات |\n|---------|--------------|---------------|----------|\n| **حداکثر در بازار** | ۲,۳۱۹,۲۰۰ ریال | ۲,۳۱۹.۲۰ تومان | بیشترین قیمت ثبت‌شده در معاملات امروز |\n| **حداقل در بازار** | ۲,۳۰۷,۶۰۰ ریال | ۲,۳۰۷.۶ تومان | کمترین قیمت ثبت‌شده در معاملات امروز |\n| **نرخ متوسط (ساعت ۰۰:۰۰)** | ۲,۳۰۸,۰۰۰ ریال | ۲,۳۰۸.۰۰ تومان | نرخ اعلام‌شده در شبکه اطلاع‌رسانی طلا و ارز |\n| **نرخ لحظه‌ای (ساعت ۲۲:۱۶)** | – | ۲۳۰,۴۳۳ تومان | نرخ لحظه‌ای از سایت Gheymat.online |\n\n> **نکته:** در بازار آزاد ایران، قیمت دلار ممکن است بسته به صرافی و زمان معاملات تغییر کند. برای خرید و فروش، همیشه نرخ‌های مختلف را مقایسه کنید.\n\n**منابع:**\n- [قیمت دلار – شبکه اطلاع‌رسانی طلا و ارز](https://www.tgju.org/قیمت-دلار) [1]  \n- [قیمت دلار آمریکا امروز – Gheymat.online](https://gheymat.online/asset/USD) [2]  \n\nاگر نیاز به نرخ دقیق لحظه‌ای یا نرخ خرید/فروش در صرافی‌های مختلف دارید، می‌توانید از وب‌سایت‌های HamRate، Mazaneh.net، یا RialXe.com مراجعه کنید.",
+      "thinking": "The user asks: \"قیمت دلار بگو بهم\" meaning \"tell me the price of the dollar.\" The system says we have live search results with sources. We should provide an answer citing the sources. The user didn't specify a specific time, but the data includes recent price info. We should provide the current price in Iranian Toman. According to source [1], price of dollar in 1405/06/30 (which is 30 September 2025) at 00:00 is 2,308,000 ریال (which is 2,308,000 ریال, but we need to convert to تومان maybe). Source [2] says price 2,30,433 تومان at 22:16. So we should provide price in both ریال and تومان. Provide the range: min 2,307,600, max 2,319,200. Provide explanation. Also mention that the rate may vary across platforms. Provide links and citations. Use Persian. Use markdown. Use a table. Provide maybe a small note. Ensure citing [1], [2]. No need to search more.",
+      "sources": [
+        {
+          "title": "قیمت دلار - شبکه اطلاع رسانی طلا و ارز",
+          "url": "https://www.tgju.org/قیمت-دلار",
+          "snippet": "قیمت دلار در بازار امروز 1405/06/30 ساعت 00:00، با 0 درصد ، 2,308,000 ریال اعلام شده است. روز جاری برای دلار با رقم 0 ریال آغاز شد و طی معاملات امروز، 2,319,200 بیشترین مقدار و 2,307,600 نیز کمترین رقمی بود که برای دلار به ثبت رسید."
+        },
+        {
+          "title": "قیمت دلار آمریکا امروز به تومان | نرخ لحظهای US Dollar",
+          "url": "https://gheymat.online/asset/USD",
+          "snippet": "قیمت دلار آمریکا در ۳۰ شهریور ۱۴۰۵ ساعت ۲۲:۱۶ برابر ۲۳۰٬۴۳۳ تومان است. این نرخ بر پایهی ۶ منبع فعال بازار ایران است؛ کمترین قیمت ۲۳۰٬۰۰۰ تومان در «بنبست» و بیشترین ۲۳۰٬۸۰۰ تومان در «تیجی ..."
+        },
+        {
+          "title": "وب سایت مظنه | قیمت لحظه ای ارز و طلا بازار",
+          "url": "https://mazaneh.net/fa",
+          "snippet": "قیمت لحظه ای دلار | قیمت ارز | قیمت حواله | قیمت ارز های دیجیتال | قیمت سکه و طلا | حباب سکه و طلا | بروزترین قیمت دلار | قیمت دلار آمریکا در بازار آزاد | قیمت ارزهای معتبر | قیمت لحظه ای | قیمت یورو"
+        },
+        {
+          "title": "قیمت امروز دلار آمریکا به تومان - صرافی ریال",
+          "url": "https://rialxe.com/usd-dollar/",
+          "snippet": "قیمت لحظهای خرید و فروش دلار آمریکا به تومان، ماشینحساب تبدیل، نمودار و آرشیو قیمت از سال ۱۳۸۶ در صرافی ریال."
+        },
+        {
+          "title": "قیمت دلار امروز | قیمت دلار آمریکا به تومان | HamRate",
+          "url": "https://hamrate.com/usd-price",
+          "snippet": "قیمت دلار لحظهای به تومان در بازار آزاد ایران — ۱۴۰۵ شهریور ۳۰, دوشنبه. نرخ خرید و فروش دلار آمریکا (USD) در HamRate."
+        }
+      ],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790030653523
+    },
+    {
+      "role": "user",
+      "content": "امروز چندمه",
+      "images": [],
+      "timestamp": 1790030719193
+    },
+    {
+      "role": "assistant",
+      "content": "\n\n> ⚠️ **خطا:** عدم امکان اتصال به سرور https://api.deepseek.com. لطفاً اتصال اینترنت یا آدرس پروکسی را بررسی کنید.",
+      "thinking": "",
+      "sources": [],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790030719198
+    },
+    {
+      "role": "user",
+      "content": "امروز چندمه",
+      "images": [],
+      "timestamp": 1790030778066
+    },
+    {
+      "role": "assistant",
+      "content": "\n\n> ⚠️ **خطا:** عدم امکان اتصال به سرور https://api.openai.com/v1. لطفاً اتصال اینترنت یا آدرس پروکسی را بررسی کنید.",
+      "thinking": "",
+      "sources": [],
+      "model": "gpt-4o",
+      "timestamp": 1790030778071
+    }
+  ],
+  "created_at": 1790030643.397105,
+  "updated_at": 1790030798.93269
+}

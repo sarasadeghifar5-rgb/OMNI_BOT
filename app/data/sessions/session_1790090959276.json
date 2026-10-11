@@ -1,0 +1,25 @@
+{
+  "id": "session_1790090959276",
+  "title": "های",
+  "model": "o1",
+  "messages": [
+    {
+      "role": "user",
+      "content": "های",
+      "images": [],
+      "timestamp": 1790090962298
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! امیدوارم روزتان خوب باشد. چطور می‌توانم کمکتان کنم؟",
+      "thinking": "The user typed \"های\". Likely a greeting \"سلام\" but they wrote \"های\". Maybe they just typed \"های\" which means \"hi\" in Persian. We need to respond in Persian, polite, natural. We should greet back. So respond \"سلام، چطور هستید؟\" or something. No code. No math. Just Persian.",
+      "sources": [],
+      "model": "o1",
+      "timestamp": 1790090962303,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790090967.6079528,
+  "updated_at": 1790090967.6079528
+}

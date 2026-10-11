@@ -1,0 +1,51 @@
+{
+  "id": "session_1790029572884",
+  "title": "سلام",
+  "model": "openrouter/auto",
+  "messages": [
+    {
+      "role": "user",
+      "content": "سلام",
+      "images": [],
+      "timestamp": 1790029578768
+    },
+    {
+      "role": "assistant",
+      "content": "\n\n> ⚠️ **خطا:** کلید API برای مدل deepseek-reasoner تنظیم نشده است. لطفاً در بخش تنظیمات یا فایل .env کلید را وارد کنید.",
+      "thinking": "",
+      "sources": [],
+      "model": "deepseek-reasoner",
+      "timestamp": 1790029578771
+    },
+    {
+      "role": "user",
+      "content": "سلام",
+      "images": [],
+      "timestamp": 1790029594430
+    },
+    {
+      "role": "assistant",
+      "content": "\n\n> ⚠️ **خطا:** کلید API برای مدل gpt-4o تنظیم نشده است. لطفاً در بخش تنظیمات یا فایل .env کلید را وارد کنید.",
+      "thinking": "",
+      "sources": [],
+      "model": "gpt-4o",
+      "timestamp": 1790029594435
+    },
+    {
+      "role": "user",
+      "content": "سلام",
+      "images": [],
+      "timestamp": 1790029605947
+    },
+    {
+      "role": "assistant",
+      "content": "\n\n> ⚠️ **خطا:** کلید API برای مدل openrouter/auto تنظیم نشده است. لطفاً در بخش تنظیمات یا فایل .env کلید را وارد کنید.",
+      "thinking": "",
+      "sources": [],
+      "model": "openrouter/auto",
+      "timestamp": 1790029605950
+    }
+  ],
+  "created_at": 1790029578.8506742,
+  "updated_at": 1790029605.9719944
+}

@@ -1,0 +1,57 @@
+{
+  "id": "session_1790101524456",
+  "title": "سلام",
+  "model": "gemini",
+  "messages": [
+    {
+      "role": "user",
+      "content": "سلام",
+      "images": [],
+      "timestamp": 1790101527421
+    },
+    {
+      "role": "assistant",
+      "content": "\n\n> ⚠️ **خطا:** خطا از سوی سرویس‌دهنده (429): This model is at concurrency capacity. Paid accounts are admitted first. Top up at https://inference.dahl.global/account — $0.03 per 1M tokens (in + out + cached) on any model. Retry after Retry-After, or switch model. Other models available now: MiniMaxAI/MiniMax-M2.7, deepseek-ai/DeepSeek-V4-Flash-0731. You can switch to one of them.",
+      "thinking": "",
+      "sources": [],
+      "model": "zai-org/GLM-5.3-Flash",
+      "timestamp": 1790101527426,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "سلام",
+      "images": [],
+      "timestamp": 1790101601600
+    },
+    {
+      "role": "assistant",
+      "content": "\n\n> ⚠️ **خطا:** خطا از سوی سرویس‌دهنده (429): This model is at concurrency capacity. Paid accounts are admitted first. Top up at https://inference.dahl.global/account — $0.03 per 1M tokens (in + out + cached) on any model. Retry after Retry-After, or switch model. Other models available now: MiniMaxAI/MiniMax-M2.7, deepseek-ai/DeepSeek-V4-Flash-0731. You can switch to one of them.",
+      "thinking": "",
+      "sources": [],
+      "model": "zai-org/GLM-5.3-Flash",
+      "timestamp": 1790101601606,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    },
+    {
+      "role": "user",
+      "content": "سلام",
+      "images": [],
+      "timestamp": 1790101667960
+    },
+    {
+      "role": "assistant",
+      "content": "سلام! چطور می‌توانم کمکتان کنم؟",
+      "thinking": "\n\n",
+      "sources": [],
+      "model": "gemini",
+      "timestamp": 1790101667966,
+      "imageGenerating": false,
+      "imageStatusText": ""
+    }
+  ],
+  "created_at": 1790101569.029698,
+  "updated_at": 1790101707.7714386
+}
