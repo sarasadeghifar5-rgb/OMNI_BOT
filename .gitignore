@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+*.db
+data/*.db
+.env
+.venv/
+env/
+debug_*.txt
+test_*.txt
+simulated_*.txt
+agnes_*.txt
+.idea/
+.vscode/

@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: telegram-ai-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    plan: free
+    region: frankfurt
+    autoDeploy: true
